@@ -1,0 +1,30 @@
+---
+import ExperienceItem from "./ExperienceItem.astro"
+const EXPERIENCE = [
+    {
+      date: "Noviembre 2024",
+      title: "Full Stack Developer",
+      company: "Campuslands",
+      description:
+        "Responsable del desarrollo y mantenimiento de la API para la plataforma KidsLeague, asegurando un rendimiento óptimo, escalabilidad y seguridad. Colaboré activamente en el diseño y la implementación de la interfaz de usuario, contribuyendo a una experiencia intuitiva y atractiva para los usuarios. ",
+    },
+  {
+    date: "Actualmente...",
+    title: "Creador de Contenido",
+    company: "Tiktok",
+    description:
+      "Divulgo sobre programación y desarrollo web en diferentes plataformas.",
+    link: "https://www.tiktok.com/@ayelmercorzo?is_from_webapp=1&sender_device=pc",
+  },
+]
+---
+
+<ol class="relative mt-16">
+  {
+    EXPERIENCE.map((experience) => (
+      <li class="">
+        <ExperienceItem {...experience} />
+      </li>
+    ))
+  }
+</ol>

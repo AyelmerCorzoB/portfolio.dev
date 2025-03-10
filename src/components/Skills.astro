@@ -1,0 +1,129 @@
+---
+const skills = [
+  {
+    category: 'Frontend',
+    items: ['HTML5', 'CSS3', 'JavaScript', 'Astro','Tailwind CSS']
+  },
+  {
+    category: 'Backend',
+    items: ['Node.js', 'Python' , 'PHP', 'MySQL','PostgreSQL','Java']
+  },
+  {
+    category: 'Tools & Others',
+    items: ['Git', 'GitHub', 'VS Code', 'Figma', 'Responsive Design']
+  }
+];
+---
+
+<section id="skills" class="skills">
+  <div class="container">
+    <h2 class="section-title">My Skills</h2>
+    <div class="skills-content">
+      
+      <div class="skills-grid">
+        {skills.map((skillGroup) => (
+          <div class="skill-group">
+            <h3 class="skill-category">{skillGroup.category}</h3>
+            <div class="skill-items">
+              {skillGroup.items.map((skill) => (
+                <div class="skill-item">{skill}</div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills {
+    background-color: var(--color-background);
+    display: flex;
+    justify-content: center;
+    padding: 5rem 0;
+  }
+
+  .skills-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+  }
+
+  .skills-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .skills-text p {
+    margin-bottom: 1.5rem;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .skill-category {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    position: relative;
+    display: inline-block;
+  }
+
+  .skill-category::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--color-primary);
+    border-radius: 2px;
+  }
+
+  .skill-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .skill-item {
+    background-color: var(--color-background-alt);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: var(--transition);
+  }
+
+  .skill-item:hover {
+    background-color: var(--color-primary);
+    color: white;
+    transform: translateY(-3px);
+  }
+
+  @media (max-width: 992px) {
+    .skills-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .skills-text {
+      text-align: center;
+    }
+
+    .skill-category {
+      display: block;
+      text-align: center;
+    }
+
+    .skill-category::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+</style>

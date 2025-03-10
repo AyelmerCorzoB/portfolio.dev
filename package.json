@@ -1,0 +1,17 @@
+{
+  "name": "portafolio-ayelmer-taildwind",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@fontsource-variable/onest": "^5.2.5",
+    "@tailwindcss/vite": "^4.0.12",
+    "astro": "^5.4.2",
+    "tailwindcss": "^4.0.12"
+  }
+}
