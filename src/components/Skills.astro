@@ -1,129 +1,71 @@
 ---
+const skillColors: { [key: string]: string } = {
+  HTML5: "hover:bg-gradient-to-r from-[#E34F26] to-[#F06529]",
+  CSS3: "hover:bg-gradient-to-r from-[#1572B6] to-[#33A9DC]",
+  JavaScript: "hover:bg-gradient-to-r from-[#F7DF1E] to-[#F0DB4F] hover:text-black",
+  Astro: "hover:bg-gradient-to-r from-[#FF5D01] to-[#FF8C42]", // Color oficial de Astro
+  TailwindCSS: "hover:bg-gradient-to-r from-[#06B6D4] to-[#0EA5E9]",
+  Nodejs: "hover:bg-gradient-to-r from-[#339933] to-[#68A063]",
+  Python: "hover:bg-gradient-to-r from-[#3776AB] to-[#FFD43B]",
+  PHP: "hover:bg-gradient-to-r from-[#777BB4] to-[#AEB2D5]",
+  MySQL: "hover:bg-[#4479A1] hover:text-white",
+  PostgreSQL: "hover:bg-[#336791] hover:text-white",
+  Java: "hover:bg-[#007396] hover:text-white",
+  Git: "hover:bg-[#F05032] hover:text-white",
+  GitHub: "hover:bg-[#181717] hover:text-white",
+  "VS Code": "hover:bg-[#007ACC] hover:text-white",
+  Figma: "hover:bg-[#F24E1E] hover:text-white",
+  "Responsive Design": "hover:bg-[#1B73E8] hover:text-white",
+};
+
 const skills = [
   {
-    category: 'Frontend',
-    items: ['HTML5', 'CSS3', 'JavaScript', 'Astro','Tailwind CSS']
+    category: "Frontend",
+    items: ["HTML5", "CSS3", "JavaScript", "Astro", "Tailwind CSS"], // Astro incluido en Frontend
   },
   {
-    category: 'Backend',
-    items: ['Node.js', 'Python' , 'PHP', 'MySQL','PostgreSQL','Java']
+    category: "Backend",
+    items: ["Node.js", "Python", "PHP", "MySQL", "PostgreSQL", "Java"],
   },
   {
-    category: 'Tools & Others',
-    items: ['Git', 'GitHub', 'VS Code', 'Figma', 'Responsive Design']
-  }
+    category: "Tools & Others",
+    items: ["Git", "GitHub", "VS Code", "Figma", "Responsive Design"],
+  },
 ];
 ---
 
-<section id="skills" class="skills">
-  <div class="container">
-    <h2 class="section-title">My Skills</h2>
-    <div class="skills-content">
-      
-      <div class="skills-grid">
-        {skills.map((skillGroup) => (
-          <div class="skill-group">
-            <h3 class="skill-category">{skillGroup.category}</h3>
-            <div class="skill-items">
-              {skillGroup.items.map((skill) => (
-                <div class="skill-item">{skill}</div>
-              ))}
-            </div>
+<section id="skills" class="py-16">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">
+      My Skills
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {skills.map((skillGroup) => (
+        <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-6 transition-transform duration-300 hover:scale-105">
+          <h3 class="text-xl font-semibold mb-4 text-yellow-500 dark:text-yellow-400 relative inline-block">
+            {skillGroup.category}
+            <span class="absolute bottom-0 left-0 w-1/2 h-1 bg-yellow-500 dark:bg-yellow-400"></span>
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {skillGroup.items.map((skill) => (
+              <span
+                class={`bg-gray-100 dark:bg-gray-600 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300 ${
+                  skillColors[skill] || "hover:bg-yellow-500 hover:text-white"
+                }`}
+              >
+                {skill}
+              </span>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   </div>
 </section>
 
 <style>
-  .skills {
-    background-color: var(--color-background);
-    display: flex;
-    justify-content: center;
-    padding: 5rem 0;
-  }
-
-  .skills-content {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 3rem;
-  }
-
-  .skills-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .skills-text p {
-    margin-bottom: 1.5rem;
-  }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-  }
-
-  .skill-category {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    color: var(--color-primary);
-    position: relative;
-    display: inline-block;
-  }
-
-  .skill-category::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 40px;
-    height: 3px;
-    background-color: var(--color-primary);
-    border-radius: 2px;
-  }
-
-  .skill-items {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-
-  .skill-item {
-    background-color: var(--color-background-alt);
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-size: 0.875rem;
-    font-weight: 500;
-    transition: var(--transition);
-  }
-
-  .skill-item:hover {
-    background-color: var(--color-primary);
-    color: white;
-    transform: translateY(-3px);
-  }
-
-  @media (max-width: 992px) {
-    .skills-content {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-
-    .skills-text {
-      text-align: center;
-    }
-
-    .skill-category {
-      display: block;
-      text-align: center;
-    }
-
-    .skill-category::after {
-      left: 50%;
-      transform: translateX(-50%);
-    }
+  /* Estilos personalizados si es necesario */
+  .hover\:bg-\[\#FF5D01\]:hover {
+    background-color: #FF5D01; /* Color oficial de Astro */
   }
 </style>

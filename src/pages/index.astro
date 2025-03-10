@@ -10,6 +10,7 @@ import Projects from "../components/Projects.astro"
 import SectionContainer from "../components/SectionContainer.astro"
 import Hero from "../components/Hero.astro"
 import TitleSection from "../components/TitleSection.astro"
+import Skills from "../components/Skills.astro"
 ---
 
 <Layout
@@ -40,6 +41,9 @@ import TitleSection from "../components/TitleSection.astro"
       </TitleSection>
       <Experience />
     </SectionContainer>
+    <SectionContainer id="skills">
+      <Skills />
+    </SectionContainer>
     <SectionContainer id="sobre-mi">
       <TitleSection>
         <ProfileCheck class="size-8" />
@@ -47,6 +51,7 @@ import TitleSection from "../components/TitleSection.astro"
       </TitleSection>
       <AboutMe />
     </SectionContainer>
+    
   </div>
   </main>
 </Layout>

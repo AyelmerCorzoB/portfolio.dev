@@ -2,36 +2,42 @@
 const personalImageAlt = "Ayelmer Corzo";
 ---
 
-<article
-  class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row"
->
-  <div
-    class="[&>p]:mb-4 [&>p>strong]:text-yellow-500 dark:[&>p>strong]:text-yellow-100 [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1"
-  >
-    <p>
-      Mi nombre es Ayelmer Corzo, aunque prefiero que me llamen Alan. Hace un
-      año descubrí mi pasión por la programación, y desde entonces he estado
-      inmerso en este mundo. Actualmente, estoy <strong
-        >finalizando mi formación como Desarrollador Web Full Stack</strong
-      >, consolidando mis habilidades para crear soluciones digitales
-      innovadoras.
+<article class="flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-16 py-12">
+  <div class="flex-1 space-y-2 text-gray-700 dark:text-gray-300">
+    <p class="text-lg leading-relaxed">
+      ¡Hola! Soy <span class="font-semibold">Ayelmer Corzo</span>, pero me conocen como Alan. Hace un año, 
+      descubrí mi pasión por la programación y desde entonces he estado inmerso en este fascinante mundo.
     </p>
-
-    <p>
-      Como futuro Ingeniero de Sistemas, inicié mi formación universitaria en
-      2025 en la <strong
-        >Universidad Nacional Abierta y a Distancia (UNAD)</strong
-      >. Mi enfoque principal es el crecimiento continuo, tanto
-      personal como profesional, con el objetivo de superarme constantemente y
-      contribuir al mundo de la tecnología con soluciones impactantes.
+    <p class="text-lg leading-relaxed">
+      Actualmente, estoy <span class="text-yellow-600 dark:text-yellow-400 font-semibold">finalizando mi formación como Desarrollador Web Full Stack</span>, 
+      consolidando mis habilidades para crear soluciones digitales innovadoras que marquen la diferencia.
     </p>
+    <p class="text-lg leading-relaxed">
+      Como futuro Ingeniero de Sistemas, inicié mi formación universitaria en 2025 en la 
+      <span class="text-yellow-600 dark:text-yellow-400 font-semibold">Universidad Nacional Abierta y a Distancia (UNAD)</span>. 
+      Mi enfoque principal es el crecimiento continuo, tanto personal como profesional, con el objetivo 
+      de superarme constantemente y contribuir al mundo de la tecnología con soluciones impactantes.
+    </p>
+    
   </div>
-  <img
-    width="200"
-    height="200"
-    src="https://i.ibb.co/nM0007GK/alan2.jpg"
-    alt={personalImageAlt}
-    class="order-1 object-cover w-64 h-full p-1 md:order-2 rotate-3 lg:p-2 lg:w-64 aspect-square rounded-2xl bg-black/20 dark:bg-yellow-500/5 ring-1 ring-black/70 dark:ring-white/20"
-    style="object-position: 50% 50%"
-  />
+  <div class="bg-yellow-500 rounded-2xl shadow-lg transform rotate-3 hover:rotate-0 transition-tranform duration-300 flex-shrink-0 w-full md:w-1/3 mb-8 md:mb-0">
+    <img
+      width="400"
+      height="400"
+      src="https://i.ibb.co/nM0007GK/alan2.jpg"
+      alt={personalImageAlt}
+      class="w-full h-auto object-cover rounded-2xl shadow-lg transform rotate-3 transition-transform duration-300 hover:rotate-0"
+      style="object-position: 50% 50%"
+    />
+  </div>
 </article>
+
+<style>
+  article {
+    scroll-margin-top: 100px;
+  }
+  .text-yellow-600 {
+    text-shadow: 0 0 10px rgba(250, 204, 21, 0.3);
+  }
+</style>
+

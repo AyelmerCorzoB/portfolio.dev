@@ -22,134 +22,329 @@ const navItems = [
     label: "contacto",
     url: "mailto:corzobarbosaa@gmail.com",
   },
+  {
+    title: "Skills",
+    label: "skills",
+    url: "/#skills",
+  }
 ]
 ---
 
 <header
   class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
 >
-<nav
-  class="flex px-4 py-2 text-sm font-medium rounded-full justify-center items-center"
->
-  <!-- Navegación principal -->
-  {navItems.map((link) => (
-    <a
-      class="relative block px-3 py-2 transition text-gray-600 dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400"
-      aria-label={link.label}
-      href={link.url}
+  <div class="container px-4 mx-auto">
+    <nav
+      class="flex items-center justify-between rounded-full py-2 px-4"
     >
-      {link.title}
-    </a>
-  ))}
+      <!-- Logo or Brand (optional) -->
+      <div class="flex items-center">
+        <img src="/projects/favicon.png" class="size-15">
+      </div>
 
-  <!-- Botón de descarga de CV -->
-  <a
-    href="public/CV_Ayelmer_Corzo.pdf"
-    download="CV_Ayelmer_Corzo.pdf"
-    class="ml-4 inline-flex items-center gap-2 px-4 py-2 bg-yellow-400 text-gray-900 font-semibold rounded-full shadow-md hover:bg-yellow-500 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center justify-center space-x-1">
+        {navItems.map((link) => (
+          <a
+            class="relative px-3 py-2 text-sm font-medium transition text-gray-600 dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400"
+            aria-label={link.label}
+            href={link.url}
+          >
+            {link.title}
+          </a>
+        ))}
+      </div>
+
+      <!-- CV Download Button -->
+      <div class="hidden md:block">
+        <a
+          href="public/CV_Ayelmer_Corzo.pdf"
+          download="CV_Ayelmer_Corzo.pdf"
+          class="inline-flex items-center gap-2 px-4 py-2 bg-yellow-400 text-gray-900 text-sm font-semibold rounded-full shadow-md hover:bg-yellow-500 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <span>Descargar CV</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="flex items-center md:hidden">
+        <a
+          href="public/CV_Ayelmer_Corzo.pdf"
+          download="CV_Ayelmer_Corzo.pdf"
+          class="mr-2 inline-flex items-center gap-1 px-3 py-1.5 bg-yellow-400 text-gray-900 text-xs font-semibold rounded-full shadow-md"
+          aria-label="Descargar CV"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <span>CV</span>
+        </a>
+        
+        <button
+          id="menu-toggle"
+          class="p-2 rounded-md text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none"
+          aria-label="Toggle menu"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 bg-white dark:bg-gray-900 z-50 hidden flex-col items-center justify-center"
   >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-    >
-      <path
-        fill-rule="evenodd"
-        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-        clip-rule="evenodd"
-      />
-    </svg>
-    <span>Descargar CV</span>
-  </a>
-
-  <!-- Botón de cambio de tema (opcional) -->
-  <!-- <ThemeToggle /> -->
-</nav>
+    <div class="absolute top-0 right-0 p-4">
+      <button
+        id="close-menu"
+        class="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-200"
+        aria-label="Close menu"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+    </div>
+    
+    <div class="flex flex-col items-center gap-6">
+      {navItems.map((link) => (
+        <a
+          class="text-xl font-medium text-gray-800 dark:text-white hover:text-yellow-400 dark:hover:text-yellow-400 transition-colors"
+          aria-label={link.label}
+          href={link.url}
+        >
+          {link.title}
+        </a>
+      ))}
+      
+      <a
+        href="public/CV_Ayelmer_Corzo.pdf"
+        download="CV_Ayelmer_Corzo.pdf"
+        class="mt-4 inline-flex items-center gap-2 px-6 py-3 bg-yellow-400 text-gray-900 font-semibold rounded-full shadow-md hover:bg-yellow-500 hover:shadow-lg transition-all duration-300"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        <span>Descargar CV</span>
+      </a>
+    </div>
+  </div>
 </header>
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    const sections = document.querySelectorAll("section")
-    const navItems = document.querySelectorAll("header nav a")
+    const sections = document.querySelectorAll("section");
+    const navItems = document.querySelectorAll("header nav a");
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const closeMenu = document.getElementById("close-menu");
+    
+    // Toggle mobile menu with animation
+    menuToggle?.addEventListener("click", () => {
+      mobileMenu?.classList.remove("hidden");
+      mobileMenu?.classList.add("flex");
+      
+      // Animate in
+      setTimeout(() => {
+        mobileMenu?.classList.add("opacity-100");
+        mobileMenu?.classList.remove("opacity-0");
+      }, 10);
+      
+      document.body.style.overflow = "hidden"; // Prevent scrolling
+    });
+    
+    // Close mobile menu with animation
+    const closeMenuHandler = () => {
+      mobileMenu?.classList.remove("opacity-100");
+      mobileMenu?.classList.add("opacity-0");
+      
+      // Wait for animation to complete
+      setTimeout(() => {
+        mobileMenu?.classList.add("hidden");
+        mobileMenu?.classList.remove("flex");
+        document.body.style.overflow = ""; // Restore scrolling
+      }, 300);
+    };
+    
+    closeMenu?.addEventListener("click", closeMenuHandler);
+    
+    // Close menu when clicking on a link
+    const mobileLinks = mobileMenu?.querySelectorAll("a");
+    mobileLinks?.forEach((link) => {
+      link.addEventListener("click", closeMenuHandler);
+    });
+
+    // Handle window resize
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 768 && mobileMenu && !mobileMenu.classList.contains("hidden")) {
+        mobileMenu.classList.add("hidden");
+        mobileMenu.classList.remove("flex");
+        mobileMenu.classList.remove("opacity-100");
+        document.body.style.overflow = ""; // Restore scrolling
+      }
+    });
 
     const callback = (entries: any[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           navItems.forEach((item) => {
             if (item.getAttribute("aria-label") == entry.target.id) {
-              item.classList.add("text-blue-500")
+              item.classList.add("text-blue-500");
             } else {
-              item.classList.remove("text-blue-500")
+              item.classList.remove("text-blue-500");
             }
-          })
+          });
         }
-      })
-    }
+      });
+    };
 
     const observer = new IntersectionObserver(callback, {
       root: null,
       rootMargin: "0px",
       threshold: 0.3,
-    })
+    });
 
     sections.forEach((section) => {
-      observer.observe(section)
-    })
+      observer.observe(section);
+    });
 
     // Cleanup function
     document.onvisibilitychange = () => {
       if (document.visibilityState === "hidden") {
-        observer.disconnect()
+        observer.disconnect();
       } else {
         sections.forEach((section) => {
-          observer.observe(section)
-        })
+          observer.observe(section);
+        });
       }
-    }
-  })
+    };
+  });
 </script>
 
 <style>
   nav {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  animation: nav-shadow 0.5s ease-out both;
-  animation-timeline: scroll();
-  animation-range: 0 100px;
-}
+    position: relative;
+    z-index: 50;
+    animation: nav-shadow 0.5s ease-out both;
+    animation-timeline: scroll();
+    animation-range: 0 100px;
+  }
 
-@keyframes nav-shadow {
-  0% {
-    background-color: transparent; /* Sin fondo en la parte superior */
-    box-shadow: none;
-    backdrop-filter: none;
+  @keyframes nav-shadow {
+    0% {
+      background-color: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+    100% {
+      background-color: rgba(49, 112, 170, 0.5);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(10px);
+    }
   }
-  100% {
-    background-color: rgba(49, 112, 170, 0.5); /* Fondo blanco semitransparente */
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Sombra */
-    backdrop-filter: blur(10px); /* Efecto de desenfoque */
-  }
-}
 
-/* Estilos para el modo oscuro */
-.dark nav {
-  animation: nav-shadow-dark 0.5s ease-out both;
-  animation-timeline: scroll();
-  animation-range: 0 100px;
-}
+  /* Estilos para el modo oscuro */
+  .dark nav {
+    animation: nav-shadow-dark 0.5s ease-out both;
+    animation-timeline: scroll();
+    animation-range: 0 100px;
+  }
 
-@keyframes nav-shadow-dark {
-  0% {
-    background-color: transparent; /* Sin fondo en la parte superior */
-    box-shadow: none;
-    backdrop-filter: none;
+  @keyframes nav-shadow-dark {
+    0% {
+      background-color: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+    100% {
+      background-color: rgba(31, 31, 224, 0.5);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
+      backdrop-filter: blur(10px);
+    }
   }
-  100% {
-    background-color: rgba(31, 31, 224, 0.5); /* Fondo oscuro semitransparente */
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
-    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+
+  /* Mobile menu animation */
+  #mobile-menu {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
   }
-}
+  
+  #mobile-menu.opacity-100 {
+    opacity: 1;
+  }
+  
+  /* Ensure the header doesn't take up too much space */
+  header {
+    height: auto;
+  }
+  
+  /* Make sure the container is properly sized */
+  .container {
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  /* Ensure the nav is properly sized on mobile */
+  @media (max-width: 768px) {
+    nav {
+      padding: 0.5rem 1rem;
+    }
+  }
 </style>
+
