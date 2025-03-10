@@ -11,6 +11,7 @@ import SectionContainer from "../components/SectionContainer.astro"
 import Hero from "../components/Hero.astro"
 import TitleSection from "../components/TitleSection.astro"
 import Skills from "../components/Skills.astro"
+import SkillsIcon from "../components/icons/SkillsIcon.astro"
 ---
 
 <Layout
@@ -42,6 +43,10 @@ import Skills from "../components/Skills.astro"
       <Experience />
     </SectionContainer>
     <SectionContainer id="skills">
+      <TitleSection>
+        <SkillsIcon class="size-8" />
+        Skills
+      </TitleSection>
       <Skills />
     </SectionContainer>
     <SectionContainer id="sobre-mi">
