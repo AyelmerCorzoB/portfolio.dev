@@ -1,11 +1,11 @@
 ---
-import Github from "./icons/Github.astro"
-import Tailwind from "./icons/Tailwind.astro"
-import Link from "./icons/Link.astro"
-import LinkButton from "./LinkButton.astro"
-import Laravel from "./icons/Laravel.astro"
-import Mysql from "./icons/Mysql.astro"
-import Css from "./icons/Css.astro"
+import Github from "./icons/Github.astro";
+import Tailwind from "./icons/Tailwind.astro";
+import Link from "./icons/Link.astro";
+import LinkButton from "./LinkButton.astro";
+import Laravel from "./icons/Laravel.astro";
+import Mysql from "./icons/Mysql.astro";
+import Css from "./icons/Css.astro";
 
 const TAGS = {
   TAILWIND: {
@@ -28,7 +28,7 @@ const TAGS = {
     class: "bg-[#264de4] text-white",
     icon: Css,
   },
-}
+};
 
 const PROJECTS = [
   {
@@ -41,7 +41,7 @@ const PROJECTS = [
     tags: [TAGS.LARAVEL, TAGS.TAILWIND, TAGS.MYSQL],
   },
   {
-    title: "KidsLeague - Plataforma para torneos de futbol infantil", 
+    title: "KidsLeague - Plataforma para torneos de futbol infantil",
     description:
       "Plataforma para torneos de futbol infantil. Creado con Tailwind CSS. Permite añadir, editar y eliminar torneos. Incluye un gráfico de barras con los ingresos y gastos mensuales.",
     link: "https://kidsleague.netlify.app/",
@@ -49,79 +49,79 @@ const PROJECTS = [
     image: "/projects/kidsleague.png",
     tags: [TAGS.TAILWIND, TAGS.CSS],
   },
-]
+];
 ---
 
 <section class="py-16">
-
   <div class="grid grid-cols-1 gap-16 max-w-6xl mx-auto px-4">
     {
       PROJECTS.map((project, index) => (
-      <article class={`group relative overflow-hidden rounded-2xl bg-white dark:bg-gray-900 shadow-xl transition-all duration-300 hover:shadow-2xl cursor-default ${index % 2 === 1 ? 'md:flex-row-reverse' : ''} flex flex-col md:flex-row`}>
-  {/* Decorative gradient background */}
-  <div class="absolute inset-0 bg-gradient-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 -z-10"></div>
-  
-  {/* Project image with overlay */}
-  <div class="md:w-1/2 relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
-    <img 
-      src={project.image || "/placeholder.svg"} 
-      alt={project.title}
-      class="w-full h-full object-cover object-top transition-all duration-500 group-hover:scale-105"
-      loading="lazy"
-    />
-</div>
-  
-  {/* Project content */}
-  <div class="md:w-1/2 p-8 flex flex-col justify-between">
-    <div>
-      {/* Tags */}
-      <div class="flex flex-wrap gap-2 mb-4">
-        {project.tags.map((tag) => (
-          <span class={`flex items-center gap-1.5 rounded-full text-xs font-medium ${tag.class} py-1.5 px-3 transition-transform duration-300 hover:scale-105`}>
-            <tag.icon class="size-4" />
-            {tag.name}
-          </span>
-        ))}
-      </div>
-      
-      {/* Title */}
-      <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-3 group-hover:text-yellow-500 transition-colors duration-300">
-        {project.title}
-      </h3>
-      
-      {/* Description */}
-      <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-        {project.description}
-      </p>
-    </div>
-    
-    {/* Links */}
-    <div class="flex flex-wrap gap-4 mt-auto">
-      {project.github && (
-        <LinkButton 
-          href={project.github}
-          class="bg-gray-800 hover:bg-gray-700 text-white transition-all duration-300 hover:scale-105 flex items-center gap-2 py-2 px-4 rounded-lg"
+        <article
+          class={`group relative overflow-hidden rounded-2xl bg-gray-900 dark:bg-gray-900 shadow-xl transition-all duration-300 hover:shadow-2xl cursor-default ${index % 2 === 1 ? "md:flex-row-reverse" : ""} flex flex-col md:flex-row`}
         >
-          <Github class="size-5" />
-          <span>Código</span>
-        </LinkButton>
-      )}
-      
-      {project.link && (
-        <LinkButton 
-          href={project.link}
-          class="bg-yellow-500 hover:bg-yellow-400 text-white transition-all duration-300 hover:scale-105 flex items-center gap-2 py-2 px-4 rounded-lg"
-        >
-          <Link class="size-5" />
-          <span>Demo</span>
-        </LinkButton>
-      )}
-    </div>
-  </div>
-</article>
+          {/* Decorative gradient background */}
+          <div class="absolute inset-0 bg-gradient-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 -z-10" />
+
+          {/* Project image with overlay */}
+          <div class="md:w-1/2 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+            <img
+              src={project.image || "/placeholder.svg"}
+              alt={project.title}
+              class="w-full h-full object-cover object-top transition-all duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+
+          {/* Project content */}
+          <div class="md:w-1/2 p-8 flex flex-col justify-between">
+            <div>
+              {/* Tags */}
+              <div class="flex flex-wrap gap-2 mb-4">
+                {project.tags.map((tag) => (
+                  <span
+                    class={`flex items-center gap-1.5 rounded-full text-xs font-medium ${tag.class} py-1.5 px-3 transition-transform duration-300 hover:scale-105`}
+                  >
+                    <tag.icon class="size-4" />
+                    {tag.name}
+                  </span>
+                ))}
+              </div>
+
+              {/* Title */}
+              <h3 class="text-2xl font-bold text-yellow-500  dark:text-white mb-3 group-hover:text-yellow-500 transition-colors duration-300">
+                {project.title}
+              </h3>
+
+              {/* Description */}
+              <p class="text-white dark:text-gray-300 mb-6 leading-relaxed">
+                {project.description}
+              </p>
+            </div>
+
+            {/* Links */}
+            <div class="flex flex-wrap gap-4 mt-auto">
+              {project.github && (
+                <LinkButton
+                  href={project.github}
+                >
+                  <Github class="size-5" />
+                  <span>Código</span>
+                </LinkButton>
+              )}
+
+              {project.link && (
+                <LinkButton
+                  href={project.link}
+                >
+                  <Link class="size-5" />
+                  <span>Demo</span>
+                </LinkButton>
+              )}
+            </div>
+          </div>
+        </article>
       ))
     }
   </div>
 </section>
-

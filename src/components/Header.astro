@@ -30,12 +30,16 @@ const navItems = [
 ];
 ---
 
-<header class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2">
+<header
+  class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
+>
   <div class="container px-4 mx-auto">
-    <nav class="flex items-center justify-between rounded-full py-2 px-4">
+    <nav
+      class="flex items-center justify-between rounded-full py-2 px-4"
+    >
       <!-- Logo or Brand (optional) -->
       <div class="flex items-center">
-        <img src="/favicon.png" class="size-15" />
+        <img src="/favicon.png" class="size-15">
       </div>
 
       <!-- Desktop Navigation -->
@@ -51,7 +55,7 @@ const navItems = [
         ))}
       </div>
 
-      <div class="hidden md:flex items-center gap-4">
+      <div class="hidden md:block">
         <a
           href="/CV-AyelmerCorzo.pdf"
           download="currículum-vitae-AyelmerCorzo.pdf"
@@ -71,12 +75,8 @@ const navItems = [
           </svg>
           <span>Descargar CV</span>
         </a>
-
-        <!-- Toggle de tema -->
-        <ThemeToggle />
       </div>
 
-      <!-- Mobile Menu Toggle -->
       <div class="flex items-center md:hidden">
         <a
           href="/CV-AyelmerCorzo.pdf"
@@ -115,8 +115,7 @@ const navItems = [
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
+              d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
       </div>
@@ -145,22 +144,23 @@ const navItems = [
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"
-          />
+            d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
     </div>
 
     <div class="flex flex-col items-center gap-6">
-      {navItems.map((link) => (
-        <a
-          class="text-xl font-medium text-gray-800 dark:text-white hover:text-yellow-400 dark:hover:text-yellow-400 transition-colors"
-          aria-label={link.label}
-          href={link.url}
-        >
-          {link.title}
-        </a>
-      ))}
+      {
+        navItems.map((link) => (
+          <a
+            class="text-xl font-medium text-gray-800 dark:text-white hover:text-yellow-400 dark:hover:text-yellow-400 transition-colors"
+            aria-label={link.label}
+            href={link.url}
+          >
+            {link.title}
+          </a>
+        ))
+      }
 
       <a
         href="public/CV_Ayelmer_Corzo.pdf"
@@ -176,8 +176,7 @@ const navItems = [
           <path
             fill-rule="evenodd"
             d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-            clip-rule="evenodd"
-          />
+            clip-rule="evenodd"></path>
         </svg>
         <span>Descargar CV</span>
       </a>
@@ -187,3 +186,160 @@ const navItems = [
     </div>
   </div>
 </header>
+<style>
+  nav {
+    position: relative;
+    z-index: 50;
+    animation: nav-shadow 0.5s ease-out both;
+    animation-timeline: scroll();
+    animation-range: 0 100px;
+  }
+
+  @keyframes nav-shadow {
+    0% {
+      background-color: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+    100% {
+      background-color: rgb(33, 33, 33,0.5);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(10px);
+    }
+  }
+
+  /* Estilos para el modo oscuro */
+  .dark nav {
+    animation: nav-shadow-dark 0.5s ease-out both;
+    animation-timeline: scroll();
+    animation-range: 0 100px;
+  }
+
+  @keyframes nav-shadow-dark {
+    0% {
+      background-color: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+    100% {
+      background-color: rgb(33, 33, 33,0.5);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
+      backdrop-filter: blur(10px);
+    }
+  }
+
+  /* Mobile menu animation */
+  #mobile-menu {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+  }
+
+  #mobile-menu.opacity-100 {
+    opacity: 1;
+  }
+
+  header {
+    height: auto;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+  }
+
+  @media (max-width: 768px) {
+    nav {
+      padding: 0.5rem 1rem;
+    }
+  }
+</style>
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const sections = document.querySelectorAll("section");
+    const navItems = document.querySelectorAll("header nav a");
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const closeMenu = document.getElementById("close-menu");
+
+    // Toggle mobile menu with animation
+    menuToggle?.addEventListener("click", () => {
+      mobileMenu?.classList.remove("hidden");
+      mobileMenu?.classList.add("flex");
+
+      // Animate in
+      setTimeout(() => {
+        mobileMenu?.classList.add("opacity-100");
+        mobileMenu?.classList.remove("opacity-0");
+      }, 10);
+
+      document.body.style.overflow = "hidden";
+    });
+
+    // Close mobile menu with animation
+    const closeMenuHandler = () => {
+      mobileMenu?.classList.remove("opacity-100");
+      mobileMenu?.classList.add("opacity-0");
+
+      // Wait for animation to complete
+      setTimeout(() => {
+        mobileMenu?.classList.add("hidden");
+        mobileMenu?.classList.remove("flex");
+        document.body.style.overflow = "";
+      }, 300);
+    };
+
+    closeMenu?.addEventListener("click", closeMenuHandler);
+
+    const mobileLinks = mobileMenu?.querySelectorAll("a");
+    mobileLinks?.forEach((link) => {
+      link.addEventListener("click", closeMenuHandler);
+    });
+
+    window.addEventListener("resize", () => {
+      if (
+        window.innerWidth >= 768 &&
+        mobileMenu &&
+        !mobileMenu.classList.contains("hidden")
+      ) {
+        mobileMenu.classList.add("hidden");
+        mobileMenu.classList.remove("flex");
+        mobileMenu.classList.remove("opacity-100");
+        document.body.style.overflow = ""; 
+      }
+    });
+
+    const callback = (entries: any[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navItems.forEach((item) => {
+            if (item.getAttribute("aria-label") == entry.target.id) {
+              item.classList.add("text-blue-500");
+            } else {
+              item.classList.remove("text-blue-500");
+            }
+          });
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(callback, {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.3,
+    });
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    document.onvisibilitychange = () => {
+      if (document.visibilityState === "hidden") {
+        observer.disconnect();
+      } else {
+        sections.forEach((section) => {
+          observer.observe(section);
+        });
+      }
+    };
+  });
+</script>
