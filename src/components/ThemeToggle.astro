@@ -13,14 +13,17 @@ const THEMES = ["Light", "Dark", "System"]
     class="appearance-none border-none flex hover:scale-125 transition"
   >
     <span class="sr-only">Elige el tema</span>
-    <SunIcon id="light" class="theme-toggle-icon size-5 transition-all" />
+    <SunIcon
+      id="light"
+      class="theme-toggle-icon size-5 transition-all text-gray-800 dark:text-gray-200"
+    />
     <MoonIcon
       id="dark"
-      class="theme-toggle-icon absolute size-5 transition-all"
+      class="theme-toggle-icon absolute size-5 transition-all text-gray-800 dark:text-gray-200"
     />
     <SystemIcon
       id="system"
-      class="theme-toggle-icon absolute size-5 transition-all"
+      class="theme-toggle-icon absolute size-5 transition-all text-gray-800 dark:text-gray-200"
     />
   </button>
   <div
@@ -31,7 +34,7 @@ const THEMES = ["Light", "Dark", "System"]
     <ul>
       {
         THEMES.map((theme) => (
-          <li class="themes-menu-option px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm">
+          <li class="themes-menu-option px-2 py-1.5 cursor-default text-gray-800 dark:text-gray-200 hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm">
             {theme}
           </li>
         ))
