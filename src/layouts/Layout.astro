@@ -3,7 +3,6 @@ import "@fontsource-variable/onest";
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   title: string;
@@ -19,19 +18,18 @@ const { description, title } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon"  href="/favicon.png" />
+    <link rel="icon" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <ViewTransitions />
   </head>
 
   <body class="relative text-black dark:text-white">
-    <div
-  class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-gray-50 dark:bg-gray-950
+      <div
+      class="absolute top-0 bottom-0 -z-[2] min-h-screen w-full bg-gray-50 dark:bg-gray-950
   bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,255,0,0.5),rgba(255,255,255,0.9))]
   dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,215,0,0.4),rgba(255,255,255,0))]"
->
-</div>
+    > 
+    </div>  
     <Header />
     <slot />
     <Footer />
@@ -111,13 +109,14 @@ const { description, title } = Astro.props;
         }
       }
     </style>
-    <script>// Función para cambiar entre light y dark mode
+    <script>
+      // Función para cambiar entre light y dark mode
       const toggleTheme = () => {
         const isDarkMode =
           localStorage.theme === "dark" ||
           (!("theme" in localStorage) &&
             window.matchMedia("(prefers-color-scheme: dark)").matches);
-    
+
         if (isDarkMode) {
           localStorage.theme = "light";
           document.documentElement.classList.remove("dark");
@@ -125,11 +124,11 @@ const { description, title } = Astro.props;
           localStorage.theme = "dark";
           document.documentElement.classList.add("dark");
         }
-    
+
         // Actualizar el ícono del tema
         updateThemeIcon();
       };
-    
+
       // Función para actualizar el ícono del tema
       const updateThemeIcon = () => {
         const themeIcon = document.getElementById("theme-icon-path");
@@ -137,7 +136,7 @@ const { description, title } = Astro.props;
           localStorage.theme === "dark" ||
           (!("theme" in localStorage) &&
             window.matchMedia("(prefers-color-scheme: dark)").matches);
-    
+
         if (themeIcon) {
           themeIcon.setAttribute(
             "d",
@@ -147,7 +146,7 @@ const { description, title } = Astro.props;
           );
         }
       };
-    
+
       // Verificar el tema al cargar la página
       if (
         localStorage.theme === "dark" ||
@@ -158,16 +157,17 @@ const { description, title } = Astro.props;
       } else {
         document.documentElement.classList.remove("dark");
       }
-    
+
       // Actualizar el ícono al cargar la página
       document.addEventListener("astro:page-load", () => {
         updateThemeIcon();
-    
+
         // Agregar el evento al botón de toggle
         const themeToggleButton = document.getElementById("theme-toggle");
         if (themeToggleButton) {
           themeToggleButton.addEventListener("click", toggleTheme);
         }
-      });</script>
+      });
+    </script>
   </body>
 </html>

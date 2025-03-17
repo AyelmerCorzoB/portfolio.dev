@@ -9,9 +9,13 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/react": "^4.2.1",
     "@fontsource-variable/onest": "^5.2.5",
     "@tailwindcss/vite": "^4.0.12",
     "astro": "^5.4.2",
+    "framer-motion": "^12.5.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "tailwindcss": "^4.0.12"
   }
 }

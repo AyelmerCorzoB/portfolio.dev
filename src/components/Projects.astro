@@ -32,7 +32,7 @@ const TAGS = {
 
 const PROJECTS = [
   {
-    title: "Revenux - Sistema de gestión de ingresos y gastos",
+    title: "Revenux (En proceso)",
     description:
       "Administrador de ingresos y gastos. Creado con Laravel y mysql. Permite añadir, editar y eliminar registros. Incluye un gráfico de barras con los ingresos y gastos mensuales.",
     link: "#",
@@ -57,7 +57,7 @@ const PROJECTS = [
     {
       PROJECTS.map((project, index) => (
         <article
-          class={`group relative overflow-hidden rounded-2xl bg-gray-900 dark:bg-gray-900 shadow-xl transition-all duration-300 hover:shadow-2xl cursor-default ${index % 2 === 1 ? "md:flex-row-reverse" : ""} flex flex-col md:flex-row`}
+          class={`group relative overflow-hidden rounded-2xl dark:border-none border-2 border-yellow-400 bg-gray-900 dark:bg-gray-900 shadow-xl transition-all duration-300 hover:shadow-2xl cursor-default ${index % 2 === 1 ? "md:flex-row-reverse" : ""} flex flex-col md:flex-row`}
         >
           {/* Decorative gradient background */}
           <div class="absolute inset-0 bg-gradient-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 -z-10" />
