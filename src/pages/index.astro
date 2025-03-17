@@ -12,9 +12,9 @@ import TitleSection from "../components/TitleSection.astro";
 import Skills from "../components/Skills.astro";
 import SkillsIcon from "../components/icons/SkillsIcon.astro";
 import BackgroundPaths from "../components/Background";
-import { getTranslations } from '../utils/translations';
+import { getTranslations } from "../utils/translations";
 
-const lang = 'es'; // o 'en'
+const lang = "es"; // o 'en'
 const t = getTranslations(lang);
 ---
 
@@ -24,51 +24,49 @@ const t = getTranslations(lang);
 >
   <BackgroundPaths client:load />
   <main>
-    <div class="w-full">
-      <SectionContainer class="py-16 md:py-36">
-        <Hero t={t} />
-      </SectionContainer>
-    </div>
+    <SectionContainer class="py-16 md:py-36">
+      <Hero t={t} />
+    </SectionContainer>
   </main>
   <div class="space-y-24">
-    <div class="w-full">
-      <SectionContainer id="proyectos">
-        <TitleSection>
-          <CodeIcon class="size-7" />
-          {t.projects} <!-- Texto traducido -->
-        </TitleSection>
-        <Projects t={t} /> <!-- Pasar traducciones al componente -->
-      </SectionContainer>
-    </div>
+    <SectionContainer id="proyectos">
+      <TitleSection>
+        <CodeIcon class="size-7" />
+        {t.projects}
+        <!-- Texto traducido -->
+      </TitleSection>
+      <Projects t={t} />
+      <!-- Pasar traducciones al componente -->
+    </SectionContainer>
 
-    <div class="w-full">
-      <SectionContainer id="experiencia">
-        <TitleSection>
-          <Briefcase class="size-8" />
-          {t.experience} <!-- Texto traducido -->
-        </TitleSection>
-        <Experience t={t} /> <!-- Pasar traducciones al componente -->
-      </SectionContainer>
-    </div>
+    <SectionContainer id="experiencia">
+      <TitleSection>
+        <Briefcase class="size-8" />
+        {t.experience}
+        <!-- Texto traducido -->
+      </TitleSection>
+      <Experience t={t} />
+      <!-- Pasar traducciones al componente -->
+    </SectionContainer>
 
-    <div class="w-full">
-      <SectionContainer id="habilidades">
-        <TitleSection>
-          <SkillsIcon class="size-8" />
-          {t.skills} <!-- Texto traducido -->
-        </TitleSection>
-        <Skills t={t} /> <!-- Pasar traducciones al componente -->
-      </SectionContainer>
-    </div>
+    <SectionContainer id="habilidades">
+      <TitleSection>
+        <SkillsIcon class="size-8" />
+        {t.skills}
+        <!-- Texto traducido -->
+      </TitleSection>
+      <Skills t={t} />
+      <!-- Pasar traducciones al componente -->
+    </SectionContainer>
 
-    <div class="w-full">
-      <SectionContainer id="sobre-mi">
-        <TitleSection>
-          <ProfileCheck class="size-8" />
-          {t.about} <!-- Texto traducido -->
-        </TitleSection>
-        <AboutMe t={t} /> <!-- Pasar traducciones al componente -->
-      </SectionContainer>
-    </div>
-  </div>
-</Layout>
+    <SectionContainer id="sobre-mi">
+      <TitleSection>
+        <ProfileCheck class="size-8" />
+        {t.about}
+        <!-- Texto traducido -->
+      </TitleSection>
+      <AboutMe t={t} />
+      <!-- Pasar traducciones al componente -->
+    </SectionContainer>
+  </div></Layout
+>

@@ -2,22 +2,14 @@
 const personalImageAlt = "Ayelmer Corzo";
 ---
 
-<article class="flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-16 py-12">
+<article class="flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-16 px-4 py-12">
   <div class="flex-1 space-y-2 text-gray-700 dark:text-gray-300">
     <p class="text-lg leading-relaxed">
-      ¡Hola! Soy <span class="font-semibold">Ayelmer Corzo</span>, pero me conocen como Alan. Hace un año, 
+      ¡Hola! Soy <span class="text-yellow-600 dark:text-yellow-400 font-semibold">Ayelmer Corzo</span>, pero me conocen como <span class="text-yellow-600 dark:text-yellow-400 font-semibold">Alan</span>. Hace un año, 
       descubrí mi pasión por la programación y desde entonces he estado inmerso en este fascinante mundo.
-
-
-
-
-
-
-
-
     </p>
     <p class="text-lg leading-relaxed">
-      Actualmente, estoy <span class="text-yellow-600 dark:text-yellow-400 font-semibold">finalizando mi formación como Desarrollador Web Full Stack</span>, 
+      Actualmente, estoy <span class="text-yellow-600 dark:text-yellow-400 font-semibold">finalizando mi formación como Desarrollador Web Full Stack Junior</span>, 
       consolidando mis habilidades para crear soluciones digitales innovadoras que marquen la diferencia.
     </p>
     <p class="text-lg leading-relaxed">
@@ -26,20 +18,15 @@ const personalImageAlt = "Ayelmer Corzo";
       Mi enfoque principal es el crecimiento continuo, tanto personal como profesional, con el objetivo 
       de superarme constantemente y contribuir al mundo de la tecnología con soluciones impactantes.
     </p>
-    
   </div>
-  <div class="bg-yellow-500 rounded-2xl shadow-lg transform rotate-3 hover:rotate-0 transition-tranform duration-300 flex-shrink-0 w-full md:w-1/3 mb-8 md:mb-0">
+  <div class="bg-yellow-500 rounded-2xl shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300 w-full max-w-[280px] sm:max-w-[320px] md:w-1/3 mb-8 md:mb-0">
     <img
-      width="400"
-      height="400"
       src="https://i.ibb.co/nM0007GK/alan2.jpg"
       alt={personalImageAlt}
-      class="w-full h-auto object-cover rounded-2xl shadow-lg transform rotate-3 transition-transform duration-300 hover:rotate-0"
+      class="w-full h-auto object-cover rounded-2xl shadow-lg transform -rotate-3 transition-transform duration-300 hover:rotate-0"
       style="object-position: 50% 50%"
     />
   </div>
-
-
 </article>
 
 <style>

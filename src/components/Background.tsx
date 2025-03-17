@@ -68,14 +68,9 @@ export default function BackgroundPaths({
   pathCount?: number;
 }) {
   const [mounted, setMounted] = useState(false);
-  const [animationStarted, setAnimationStarted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-
-    setTimeout(() => {
-      setAnimationStarted(true);
-    }, 2000);
   }, []);
 
   if (!mounted) return null;
@@ -83,22 +78,19 @@ export default function BackgroundPaths({
   return (
     <div className="fixed inset-0 -z-[1] min-h-screen w-full overflow-hidden">
       <div className="absolute inset-0 backdrop-blur-[1px]" />
-      {animationStarted && (
-        <>
-          <FloatingPaths
-            position={1}
-            color="text-yellow-500/80"
-            darkColor="text-yellow-500/50"
-            pathCount={pathCount}
-          />
-          <FloatingPaths
-            position={-1}
-            color="text-gray-950/50"
-            darkColor="text-gray-400"
-            pathCount={pathCount}
-          />
-        </>
-      )}
+      {/* Renderizar las animaciones inmediatamente */}
+      <FloatingPaths
+        position={1}
+        color="text-yellow-500/80"
+        darkColor="text-yellow-500/50"
+        pathCount={pathCount}
+      />
+      <FloatingPaths
+        position={-1}
+        color="text-gray-950/50"
+        darkColor="text-gray-400"
+        pathCount={pathCount}
+      />
     </div>
   );
 }

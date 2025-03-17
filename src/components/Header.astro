@@ -33,10 +33,8 @@ const navItems = [
 <header
   class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
 >
-  <div class="container px-4 mx-auto">
-    <nav
-      class="flex items-center justify-between rounded-full py-2 px-4"
-    >
+  <div class="container px-2 mx-auto">
+    <nav class="flex items-center justify-between rounded-full py-2 px-4">
       <!-- Logo or Brand -->
       <div class="flex items-center">
         <img src="/favicon.png" class="size-15" alt="Logo" />
@@ -44,15 +42,17 @@ const navItems = [
 
       <!-- Desktop Navigation -->
       <div class="hidden md:flex items-center justify-center space-x-1">
-        {navItems.map((link) => (
-          <a
-            class="relative px-3 py-2 text-sm font-medium transition text-black/80 dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400"
-            aria-label={link.label}
-            href={link.url}
-          >
-            {link.title}
-          </a>
-        ))}
+        {
+          navItems.map((link) => (
+            <a
+              class="relative px-3 py-2 text-sm font-medium transition text-black/80 dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400"
+              aria-label={link.label}
+              href={link.url}
+            >
+              {link.title}
+            </a>
+          ))
+        }
       </div>
 
       <!-- Desktop: Download CV and Theme Toggle -->
@@ -71,18 +71,17 @@ const navItems = [
             <path
               fill-rule="evenodd"
               d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-              clip-rule="evenodd"
-            />
+              clip-rule="evenodd"></path>
           </svg>
           <span>Descargar CV</span>
         </a>
         <ThemeToggle />
         <select
-          onchange="changeLanguage(event)"
+          id="language-selector"
           class="px-3 py-2 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white rounded-md focus:outline-none"
         >
           <option value="en">English</option>
-          <option value="es">Español</option>
+          <option value="es" selected>Español</option>
         </select>
       </div>
 
@@ -103,8 +102,7 @@ const navItems = [
             <path
               fill-rule="evenodd"
               d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-              clip-rule="evenodd"
-            />
+              clip-rule="evenodd"></path>
           </svg>
           <span>CV</span>
         </a>
@@ -125,8 +123,7 @@ const navItems = [
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
+              d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
       </div>
@@ -136,17 +133,13 @@ const navItems = [
   <!-- Mobile Menu Overlay -->
   <div
     id="mobile-menu"
-    class="fixed inset-0 bg-white dark:bg-gray-900 z-50 hidden flex-col items-center justify-center"
+    class="fixed inset-0 bg-gray-950 z-50 hidden flex-col justify-center items-center"
   >
-    <div class="absolute top-0 right-0 p-4">
-      <button
-        id="close-menu"
-        class="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-200"
-        aria-label="Close menu"
-      >
+    <div class="absolute top-4 right-4">
+      <button id="close-menu" class="p-2 text-white" aria-label="Close menu">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6"
+          class="h-8 w-8"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -158,203 +151,171 @@ const navItems = [
             d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
-      
     </div>
 
-    <div class="flex flex-col items-center gap-6">
+    <ul class="flex flex-col items-center space-y-6">
       {
         navItems.map((link) => (
-          <a
-            class="text-xl font-medium text-gray-800 dark:text-white hover:text-yellow-400 dark:hover:text-yellow-400 transition-colors"
-            aria-label={link.label}
-            href={link.url}
-          >
-            {link.title}
-          </a>
+          <li>
+            <a
+              class="text-xl font-medium text-white hover:text-yellow-400 transition-colors"
+              aria-label={link.label}
+              href={link.url}
+            >
+              {link.title}
+            </a>
+          </li>
         ))
       }
-
-      <a
-        href="public/CV_Ayelmer_Corzo.pdf"
-        download="CV_Ayelmer_Corzo.pdf"
-        class="mt-4 inline-flex items-center gap-2 px-6 py-3 bg-yellow-400 text-gray-900 font-semibold rounded-full shadow-md hover:bg-yellow-500 hover:shadow-lg transition-all duration-300"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
-          viewBox="0 0 20 20"
-          fill="currentColor"
+      <li class="mt-8">
+        <a
+          href="/CV-AyelmerCorzo.pdf"
+          download="currículum-vitae-AyelmerCorzo.pdf"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-yellow-400 text-gray-900 font-semibold rounded-full shadow-md hover:bg-yellow-500 hover:shadow-lg transition-all duration-300"
         >
-          <path
-            fill-rule="evenodd"
-            d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-            clip-rule="evenodd"></path>
-        </svg>
-        <span>Descargar CV</span>
-      </a>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+              clip-rule="evenodd"></path>
+          </svg>
+          <span>Descargar CV</span>
+        </a>
+      </li>
 
-      <!-- Toggle de tema en el menú móvil -->
-      <ThemeToggle />
-    </div>
+      <!-- Mobile: Theme Toggle and Language Selector -->
+      <li class="mt-6">
+        <div class="flex flex-col items-center gap-4">
+          <ThemeToggle />
+          <select
+            id="mobile-language-selector"
+            class="mt-4 px-3 py-2 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white rounded-md focus:outline-none"
+          >
+            <option value="en">English</option>
+            <option value="es" selected>Español</option>
+          </select>
+        </div>
+      </li>
+    </ul>
+  </div>
 </header>
 
 <style>
-nav {
-  position: relative;
-  z-index: 50;
-  animation: nav-shadow 0.5s ease-out both;
-  animation-timeline: scroll();
-  animation-range: 0 100px;
-}
-
-@keyframes nav-shadow {
-  0% {
-    background-color: transparent;
-    box-shadow: none;
-    backdrop-filter: none;
-  }
-  100% {
-    background-color: rgba(224, 203, 15, 0.363);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    backdrop-filter: blur(10px);
-  }
-}
-
-/* Estilos para el modo oscuro */
-.dark nav {
-  animation: nav-shadow-dark 0.5s ease-out both;
-  animation-timeline: scroll();
-  animation-range: 0 100px;
-}
-
-@keyframes nav-shadow-dark {
-  0% {
-    background-color: transparent;
-    box-shadow: none;
-    backdrop-filter: none;
-  }
-  100% {
-    background-color: rgb(33, 33, 33,0.5);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
-    backdrop-filter: blur(10px);
-  }
-}
-
-/* Mobile menu animation */
-#mobile-menu {
-  transition: opacity 0.3s ease-in-out;
-  opacity: 0;
-}
-
-#mobile-menu.opacity-100 {
-  opacity: 1;
-}
-
-header {
-  height: auto;
-}
-
-.container {
-  width: 100%;
-  max-width: 1200px;
-}
-
-@media (max-width: 768px) {
   nav {
-    padding: 0.5rem 1rem;
+    position: relative;
+    z-index: 50;
+    animation: nav-shadow 0.5s ease-out both;
+    animation-timeline: scroll();
+    animation-range: 0 100px;
   }
-}
+
+  @keyframes nav-shadow {
+    0% {
+      background-color: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+    100% {
+      background-color: rgba(224, 203, 15, 0.363);
+      box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(10px);
+    }
+  }
+
+  /* Estilos para el modo oscuro */
+  .dark nav {
+    animation: nav-shadow-dark 0.5s ease-out both;
+    animation-timeline: scroll();
+    animation-range: 0 100px;
+  }
+
+  @keyframes nav-shadow-dark {
+    0% {
+      background-color: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+    100% {
+      background-color: rgba(33, 33, 33, 0.5);
+      box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(10px);
+    }
+  }
 </style>
 
 <script>
-    document.addEventListener("astro:page-load", () => {
-    const sections = document.querySelectorAll("section");
-    const navItems = document.querySelectorAll("header nav a");
+  function setupMobileMenu() {
     const menuToggle = document.getElementById("menu-toggle");
-    const mobileMenu = document.getElementById("mobile-menu");
     const closeMenu = document.getElementById("close-menu");
-    
-    // Toggle mobile menu with animation
-    menuToggle?.addEventListener("click", () => {
-      mobileMenu?.classList.remove("hidden");
-      mobileMenu?.classList.add("flex");
-      
-      // Animate in
-      setTimeout(() => {
-        mobileMenu?.classList.add("opacity-100");
-        mobileMenu?.classList.remove("opacity-0");
-      }, 10);
-      
-      document.body.style.overflow = "hidden"; // Prevent scrolling
-    });
-    
-    // Close mobile menu with animation
-    const closeMenuHandler = () => {
-      mobileMenu?.classList.remove("opacity-100");
-      mobileMenu?.classList.add("opacity-0");
-      
-      // Wait for animation to complete
-      setTimeout(() => {
-        mobileMenu?.classList.add("hidden");
-        mobileMenu?.classList.remove("flex");
-        document.body.style.overflow = ""; // Restore scrolling
-      }, 300);
+    const mobileMenu = document.getElementById("mobile-menu");
+    const languageSelector = document.getElementById("language-selector");
+    const mobileLanguageSelector = document.getElementById(
+      "mobile-language-selector"
+    );
+
+    if (!menuToggle || !closeMenu || !mobileMenu) {
+      console.error("Menu elements not found");
+      return;
+    }
+
+    const openMenu = () => {
+      mobileMenu.classList.remove("hidden");
+      mobileMenu.classList.add("flex");
+      document.body.style.overflow = "hidden"; // Prevent scrolling when menu is open
     };
-    
-    closeMenu?.addEventListener("click", closeMenuHandler);
-    
+
+    const closeMenuHandler = () => {
+      mobileMenu.classList.add("hidden");
+      mobileMenu.classList.remove("flex");
+      document.body.style.overflow = ""; // Restore scrolling
+    };
+
+    menuToggle.addEventListener("click", openMenu);
+    menuToggle.addEventListener("touchend", (e) => {
+      e.preventDefault();
+      openMenu();
+    });
+
+    closeMenu.addEventListener("click", closeMenuHandler);
+    closeMenu.addEventListener("touchend", (e) => {
+      e.preventDefault();
+      closeMenuHandler();
+    });
+
     // Close menu when clicking on a link
-    const mobileLinks = mobileMenu?.querySelectorAll("a");
-    mobileLinks?.forEach((link) => {
+    const menuLinks = mobileMenu.querySelectorAll("a");
+    menuLinks.forEach((link) => {
       link.addEventListener("click", closeMenuHandler);
     });
 
     // Handle window resize
     window.addEventListener("resize", () => {
-      if (window.innerWidth >= 768 && mobileMenu && !mobileMenu.classList.contains("hidden")) {
+      if (
+        window.innerWidth >= 768 &&
+        !mobileMenu.classList.contains("hidden")
+      ) {
         mobileMenu.classList.add("hidden");
         mobileMenu.classList.remove("flex");
-        mobileMenu.classList.remove("opacity-100");
         document.body.style.overflow = ""; // Restore scrolling
       }
     });
+  }
 
-    const callback = (entries: any[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          navItems.forEach((item) => {
-            if (item.getAttribute("aria-label") == entry.target.id) {
-              item.classList.add("text-blue-500");
-            } else {
-              item.classList.remove("text-blue-500");
-            }
-          });
-        }
-      });
-    };
+  document.addEventListener("astro:page-load", setupMobileMenu);
 
-    const observer = new IntersectionObserver(callback, {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.3,
-    });
-
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
-
-    // Cleanup function
-    document.onvisibilitychange = () => {
-      if (document.visibilityState === "hidden") {
-        observer.disconnect();
-      } else {
-        sections.forEach((section) => {
-          observer.observe(section);
-        });
-      }
-    };
-  });
+  // Also run on initial page load in case astro:page-load doesn't fire
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupMobileMenu);
+  } else {
+    setupMobileMenu();
+  }
 </script>
-
-
-<script src="/src/scripts/cambiarlenguaje.js"></script>
