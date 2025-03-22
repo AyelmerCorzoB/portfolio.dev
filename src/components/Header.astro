@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from "./ThemeToggle.astro";
+import LenguageChangeModal from "./LenguageChangeModal.astro";
 
 const navItems = [
   {
@@ -203,6 +204,8 @@ const navItems = [
       </li>
     </ul>
   </div>
+
+  <LenguageChangeModal />
 </header>
 
 <style>
@@ -257,10 +260,6 @@ const navItems = [
     const menuToggle = document.getElementById("menu-toggle");
     const closeMenu = document.getElementById("close-menu");
     const mobileMenu = document.getElementById("mobile-menu");
-    const languageSelector = document.getElementById("language-selector");
-    const mobileLanguageSelector = document.getElementById(
-      "mobile-language-selector"
-    );
 
     if (!menuToggle || !closeMenu || !mobileMenu) {
       console.error("Menu elements not found");
@@ -318,4 +317,45 @@ const navItems = [
   } else {
     setupMobileMenu();
   }
+  function setupLanguageSelectors() {
+  console.log("Language selector change detected");
+  const languageSelector = document.getElementById("language-selector");
+  const mobileLanguageSelector = document.getElementById("mobile-language-selector");
+
+  if (languageSelector) {
+    languageSelector.addEventListener("change", () => {
+      // Mostrar el modal de construcción
+      if (window.showConstructionModal) {
+        window.showConstructionModal();
+      }
+    });
+  }
+
+  if (mobileLanguageSelector) {
+    mobileLanguageSelector.addEventListener("change", () => {
+      // Mostrar el modal de construcción
+      if (window.showConstructionModal) {
+        window.showConstructionModal();
+      }
+    });
+  }
+}
+
+// Ejecutar la configuración del modal y los selectores de idioma
+document.addEventListener("astro:page-load", () => {
+  setupMobileMenu();
+  setupLanguageSelectors(); // Asegúrate de llamar esta función
+});
+
+// Ejecutar en la carga inicial de la página
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    setupMobileMenu();
+    setupLanguageSelectors(); // Asegúrate de llamar esta función
+  });
+} else {
+  setupMobileMenu();
+  setupLanguageSelectors(); // Asegúrate de llamar esta función
+}
 </script>
+
