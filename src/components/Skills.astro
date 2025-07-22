@@ -1,22 +1,32 @@
 ---
 const skillColors: { [key: string]: string } = {
-  HTML5: "hover:bg-gradient-to-r from-[#E34F26] to-[#F06529] hover:text-white cursor-default",
+  HTML5:
+    "hover:bg-gradient-to-r from-[#E34F26] to-[#F06529] hover:text-white cursor-default",
   CSS3: "hover:bg-gradient-to-r from-[#1572B6] to-[#33A9DC] hover:text-white cursor-default",
-  JavaScript: "hover:bg-gradient-to-r from-[#b5a735] to-[#F0DB4F] hover:text-white cursor-default",
-  Astro: "hover:bg-gradient-to-tr from-[#1321AC] to-[#881ABD] hover:text-white cursor-default", 
-  "Tailwind CSS": "hover:bg-gradient-to-tr from-[#177080] to-[#a5f3fc] hover:text-white cursor-default", 
-  "Node.js": "hover:bg-gradient-to-r from-[rgba(48,48,48,0.3)] to-[rgb(60,135,58)] hover:text-white cursor-default",
-  Python: "hover:bg-gradient-to-r from-[#3776AB] to-[#FFD43B] hover:text-white cursor-default",
+  JavaScript:
+    "hover:bg-gradient-to-r from-[#b5a735] to-[#F0DB4F] hover:text-white cursor-default",
+  Astro:
+    "hover:bg-gradient-to-tr from-[#1321AC] to-[#881ABD] hover:text-white cursor-default",
+  "Tailwind CSS":
+    "hover:bg-gradient-to-tr from-[#177080] to-[#a5f3fc] hover:text-white cursor-default",
+  "Node.js":
+    "hover:bg-gradient-to-r from-[rgba(48,48,48,0.3)] to-[rgb(60,135,58)] hover:text-white cursor-default",
+  Python:
+    "hover:bg-gradient-to-r from-[#3776AB] to-[#FFD43B] hover:text-white cursor-default",
   PHP: "hover:bg-gradient-to-r from-[#777BB4] to-[#AEB2D5] hover:text-white cursor-default",
   MySQL: "hover:bg-[#4479A1] hover:text-white cursor-default",
-  PostgreSQL: "hover:bg-gradient-to-r from-[#00758F] to-[#F29111] hover:text-white cursor-default",
+  PostgreSQL:
+    "hover:bg-gradient-to-r from-[#00758F] to-[#F29111] hover:text-white cursor-default",
   Java: "hover:bg-gradient-to-r from-[#DE3423] to-[#380D09] hover:text-white cursor-default",
+  "Power Bi Desktop": "hover:bg-gradient-to-r from-[#F2C811] to-[#333333] hover:text-white cursor-default",
   Git: "hover:bg-[#F05032] hover:text-white cursor-default",
   GitHub: "hover:bg-[#181717] hover:text-white cursor-default",
   "VS Code": "hover:bg-[#007ACC] hover:text-white cursor-default",
-  Figma: "hover:bg-gradient-to-r from-[#18A0FB] via-[#1BC47D] to-[#F24E1E] hover:text-white cursor-default",
+  Figma:
+    "hover:bg-gradient-to-r from-[#18A0FB] via-[#1BC47D] to-[#F24E1E] hover:text-white cursor-default",
   "Responsive Design": "hover:bg-[#1B73E8] hover:text-white cursor-default",
-  "Spring Boot": "hover:bg-gradient-to-r from-[rgba(48,48,48,0.3)] to-[rgb(60,135,58)] hover:text-white cursor-default",
+  "Spring Boot":
+    "hover:bg-gradient-to-r from-[rgba(48,48,48,0.3)] to-[rgb(60,135,58)] hover:text-white cursor-default",
 };
 
 const skills = [
@@ -26,38 +36,47 @@ const skills = [
   },
   {
     category: "Backend",
-    items: ["Node.js", "Python", "PHP", "MySQL", "PostgreSQL", "Java", "Spring Boot"],
+    items: [
+      "Node.js",
+      "Python",
+      "PHP",
+      "MySQL",
+      "PostgreSQL",
+      "Java",
+      "Spring Boot",
+    ],
   },
   {
-    category: "Tools & Others",
-    items: ["Git", "GitHub", "VS Code", "Figma", "Responsive Design"],
+    category: "Herramientas y Otros",
+    items: ["Power Bi Desktop","Git", "GitHub", "VS Code", "Figma", "Responsive Design"],
   },
 ];
 ---
 
 <section id="skills" class="py-16">
   <div class="container mx-auto px-4">
-    
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {skills.map((skillGroup) => (
-        <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-6 transition-transform duration-300 hover:scale-105">
-          <h3 class="text-xl font-semibold mb-4 text-yellow-500 dark:text-yellow-400 relative inline-block">
-            {skillGroup.category}
-            <span class="absolute bottom-0 left-0 w-1/2 h-1 bg-yellow-500 dark:bg-yellow-400"></span>
-          </h3>
-          <div class="flex flex-wrap gap-2">
-            {skillGroup.items.map((skill) => (
-              <span
-                class={`bg-gray-100 dark:bg-gray-600 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300 ${
-                  skillColors[skill] || "hover:bg-yellow-500 hover:text-white"
-                }`}
-              >
-                {skill}
-              </span>
-            ))}
+      {
+        skills.map((skillGroup) => (
+          <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-6 transition-transform duration-300 hover:scale-105">
+            <h3 class="text-xl font-semibold mb-4 text-yellow-500 dark:text-yellow-400 relative inline-block">
+              {skillGroup.category}
+              <span class="absolute bottom-0 left-0 w-1/2 h-1 bg-yellow-500 dark:bg-yellow-400" />
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              {skillGroup.items.map((skill) => (
+                <span
+                  class={`bg-gray-100 dark:bg-gray-600 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300 ${
+                    skillColors[skill] || "hover:bg-yellow-500 hover:text-white"
+                  }`}
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
 </section>
@@ -65,6 +84,6 @@ const skills = [
 <style>
   /* Estilos personalizados si es necesario */
   .hover\:bg-\[\#FF5D01\]:hover {
-    background-color: #FF5D01; /* Color oficial de Astro */
+    background-color: #ff5d01; /* Color oficial de Astro */
   }
 </style>

@@ -1,4 +1,5 @@
 ---
+import Carrusel from "../components/Carrusel.jsx";
 const personalImageAlt = "Ayelmer Corzo";
 ---
 
@@ -19,22 +20,13 @@ const personalImageAlt = "Ayelmer Corzo";
       de superarme constantemente y contribuir al mundo de la tecnología con soluciones impactantes.
     </p>
   </div>
-  <div class="bg-yellow-500 rounded-2xl shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300 w-full max-w-[280px] sm:max-w-[320px] md:w-1/3 mb-8 md:mb-0">
-    <img
-      src="https://i.ibb.co/nM0007GK/alan2.jpg"
-      alt={personalImageAlt}
-      class="w-full h-auto object-cover rounded-2xl shadow-lg transform -rotate-3 transition-transform duration-300 hover:rotate-0"
-      style="object-position: 50% 50%"
-    />
-  </div>
+
+  <Carrusel client:load />
 </article>
 
 <style>
   article {
     scroll-margin-top: 100px;
   }
-  .text-yellow-600 {
-    text-shadow: 0 0 10px rgba(250, 204, 21, 0.3);
-  }
+  
 </style>
-
