@@ -7,6 +7,7 @@ const images = [
   '/images/image03.jpeg',
   '/images/image04.jpeg',
   '/images/image05.jpg',
+  '/images/image06.jpg'
 ];
 
 export default function Carrusel() {

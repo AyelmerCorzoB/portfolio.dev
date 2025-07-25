@@ -6,8 +6,14 @@ import LinkButton from "./LinkButton.astro";
 import Laravel from "./icons/Laravel.astro";
 import Mysql from "./icons/Mysql.astro";
 import Css from "./icons/Css.astro";
+import AstroIcon from "./icons/AstroIcon.astro"
 
 const TAGS = {
+  ASTRO: {
+    name: "Astro",
+    class: "bg-[#003159] text-white",
+    icon: AstroIcon,
+  },
   TAILWIND: {
     name: "Tailwind CSS",
     class: "bg-[#003159] text-white",
@@ -32,12 +38,12 @@ const TAGS = {
 
 const PROJECTS = [
   {
-    title: "Revenux (En proceso)",
+    title: "Marvel vs DC",
     description:
-      "Administrador de ingresos y gastos. Creado con Laravel y mysql. Permite añadir, editar y eliminar registros. Incluye un gráfico de barras con los ingresos y gastos mensuales.",
-    link: "#",
-    github: "https://github.com/AyelmerCorzoB/Revenux",
-    image: "/projects/revenux.png",
+      "permite explorar y comparar personajes de dos de los universos de cómics más famosos: DC Comics y Marvel. Puedes ver los personajes de cada universo, compararlos en un emocionante 1 vs 1 aleatorio, y descubrir quién es el más poderoso. ¡Perfecto para los amantes de los cómics y los superhéroes!",
+    link: "https://superheroversus.netlify.app/",
+    github: "https://github.com/AyelmerCorzoB/superhero-versus",
+    image: "/projects/DC-MARVEL.png",
     tags: [TAGS.LARAVEL, TAGS.TAILWIND, TAGS.MYSQL],
   },
   {
@@ -45,9 +51,9 @@ const PROJECTS = [
     description:
       "Plataforma para torneos de futbol infantil. Creado con Tailwind CSS. Permite añadir, editar y eliminar torneos. Incluye un gráfico de barras con los ingresos y gastos mensuales.",
     link: "https://kidsleague.netlify.app/",
-    github: "https://github.com/AyelmerCorzoB/administrador-de-ingresos",
+    github: "https://github.com/AyelmerCorzoB/KidsLeague",
     image: "/projects/kidsleague.png",
-    tags: [TAGS.TAILWIND, TAGS.CSS],
+    tags: [TAGS.ASTRO, TAGS.TAILWIND, TAGS.MYSQL],
   },
 ];
 ---
