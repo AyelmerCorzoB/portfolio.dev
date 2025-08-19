@@ -1,0 +1,103 @@
+---
+import SunIcon from "../icons/Sun.astro"
+import MoonIcon from "../icons/Moon.astro"
+import SystemIcon from "../icons/System.astro"
+
+const THEMES = ["light", "dark", "system"]
+---
+
+<div class="relative ml-1 mr-1">
+  <button
+    transition:persist
+    id="theme-toggle-btn"
+    class="appearance-none border-none flex hover:scale-125 transition"
+    aria-label="Cambiar tema"
+  >
+    <span class="sr-only">Cambiar tema</span>
+    <SunIcon
+      id="light"
+      class="theme-toggle-icon size-5 transition-all text-gray-800 dark:text-gray-200"
+    />
+    <MoonIcon
+      id="dark"
+      class="theme-toggle-icon absolute size-5 transition-all text-gray-800 dark:text-gray-200"
+    />
+    <SystemIcon
+      id="system"
+      class="theme-toggle-icon absolute size-5 transition-all text-gray-800 dark:text-gray-200"
+    />
+  </button>
+</div>
+
+<style>
+  .theme-toggle-icon {
+    transform: scale(0);
+    transition: transform 0.2s ease;
+  }
+</style>
+
+<script is:inline>
+  const matchMedia = window.matchMedia("(prefers-color-scheme: dark)")
+  let remove = null
+
+  const getThemePreference = () => {
+    if (typeof localStorage !== "undefined") {
+      return localStorage.getItem("theme") ?? "system"
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light"
+  }
+
+  const updateIcon = (themePreference) => {
+    document.querySelectorAll(".theme-toggle-icon").forEach((element) => {
+      element.style.transform = element.id === themePreference ? "scale(1)" : "scale(0)"
+    })
+  }
+
+  const updateTheme = () => {
+    if (remove != null) {
+      remove()
+    }
+    matchMedia.addEventListener("change", updateTheme)
+    remove = () => {
+      matchMedia.removeEventListener("change", updateTheme)
+    }
+
+    const themePreference = getThemePreference()
+    const isDark =
+      themePreference === "dark" ||
+      (themePreference === "system" && matchMedia.matches)
+
+    updateIcon(themePreference)
+    document.documentElement.classList[isDark ? "add" : "remove"]("dark")
+  }
+
+  // Cycle through themes: light → dark → system → light
+  const cycleTheme = () => {
+    const currentTheme = getThemePreference()
+    const themes = ["light", "dark", "system"]
+    const currentIndex = themes.indexOf(currentTheme)
+    const nextIndex = (currentIndex + 1) % themes.length
+    const nextTheme = themes[nextIndex]
+    
+    localStorage.setItem("theme", nextTheme)
+    updateTheme()
+  }
+
+  // Initialize theme on load
+  updateTheme()
+
+  // Add click event to cycle through themes
+  document.getElementById("theme-toggle-btn").addEventListener("click", cycleTheme)
+
+  // Handle Astro page transitions
+  document.addEventListener('astro:after-swap', () => {
+    updateTheme();
+    window.scrollTo({ left: 0, top: 0, behavior: 'instant' });
+    
+    // Re-attach event listener after page transition
+    document.getElementById("theme-toggle-btn")?.addEventListener("click", cycleTheme)
+  })
+</script>
+

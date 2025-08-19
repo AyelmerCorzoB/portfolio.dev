@@ -1,0 +1,70 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import AboutMe from "../../components/en/About.astro";
+import Briefcase from "../../components/icons/Briefcase.astro";
+import CodeIcon from "../../components/icons/Code.astro";
+import Experience from "../../components/en/Experience.astro";
+import ProfileCheck from "../../components/icons/ProfileCheck.astro";
+import Projects from "../../components/en/Projects.astro";
+import SectionContainer from "../../components/en/SectionContainer.astro";
+import Hero from "../../components/en/Hero.astro";
+import TitleSection from "../../components/en/TitleSection.astro";
+import Skills from "../../components/en/Skills.astro";
+import SkillsIcon from "../../components/icons/SkillsIcon.astro";
+import BackgroundPaths from "../../components/Background";
+import { ClientRouter, fade } from "astro:transitions";
+---
+
+<Layout
+  title="AyelmerDev | Desarrollador y Programador Web"
+  description="Contrata a AyelmerDev para crear tu aplicación web o móvil. Desarrollador Web y Creador de Contenido. Especializado en crear aplicaciones únicas."
+>
+  <ClientRouter />
+  <BackgroundPaths client:load />
+  <main>
+    <SectionContainer class="py-16 md:py-36">
+      <Hero  />
+    </SectionContainer>
+  </main>
+  <div class="space-y-24">
+    <SectionContainer id="projects">
+      <TitleSection>
+        <CodeIcon class="size-7" />
+        Projects
+        <!-- Texto traducido -->
+      </TitleSection>
+      <Projects  />
+      <!-- Pasar traducciones al componente -->
+    </SectionContainer>
+
+    <SectionContainer id="experience">
+      <TitleSection>
+        <Briefcase class="size-8" />
+        Experience
+        <!-- Texto traducido -->
+      </TitleSection>
+      <Experience  />
+      <!-- Pasar traducciones al componente -->
+    </SectionContainer>
+
+    <SectionContainer id="skills">
+      <TitleSection>
+        <SkillsIcon class="size-8" />
+        Skills
+        <!-- Texto traducido -->
+      </TitleSection>
+      <Skills />
+      <!-- Pasar traducciones al componente -->
+    </SectionContainer>
+
+    <SectionContainer id="about-me">
+      <TitleSection>
+        <ProfileCheck class="size-8" />
+        About me
+        <!-- Texto traducido -->
+      </TitleSection>
+      <AboutMe/>
+      <!-- Pasar traducciones al componente -->
+    </SectionContainer>
+  </div></Layout
+>

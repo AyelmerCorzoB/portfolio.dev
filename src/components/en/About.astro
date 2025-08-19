@@ -1,0 +1,33 @@
+---
+import Carrusel from "../../components/Carrusel.jsx";
+const personalImageAlt = "Ayelmer Corzo";
+---
+
+<article class="flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-16 px-4 py-12">
+  <div class="flex-1 space-y-2 text-gray-700 dark:text-gray-300">
+    <p class="text-lg leading-relaxed">
+      Hi! I'm <span class="text-yellow-600 dark:text-yellow-400 font-semibold">Ayelmer Corzo</span>, but people know me as <span class="text-yellow-600 dark:text-yellow-400 font-semibold">Alan</span>. A year ago, 
+      I discovered my passion for programming, and since then I’ve been immersed in this fascinating world.
+</p>
+<p class="text-lg leading-relaxed">
+      I’m currently <span class="text-yellow-600 dark:text-yellow-400 font-semibold">finishing my training as a Junior Full Stack Web Developer</span>, 
+      strengthening my skills to create innovative digital solutions that make a difference.
+</p>
+<p class="text-lg leading-relaxed">
+      As a future Systems Engineer, I began my university studies in 2025 at the 
+      <span class="text-yellow-600 dark:text-yellow-400 font-semibold">Universidad Nacional Abierta y a Distancia (UNAD)</span>. 
+      My main focus is continuous growth, both personally and professionally, with the goal 
+      of constantly improving myself and contributing to the world of technology with impactful solutions.
+</p>
+
+  </div>
+
+  <Carrusel client:load />
+</article>
+
+<style>
+  article {
+    scroll-margin-top: 100px;
+  }
+  
+</style>

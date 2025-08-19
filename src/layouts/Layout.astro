@@ -1,8 +1,11 @@
 ---
 import "@fontsource-variable/onest";
 import "../styles/global.css";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import HeaderES from "../components/es/HeaderES.astro";
+import HeaderEN from "../components/en/HeaderEN.astro";
+import FooterES from "../components/es/Footer.astro";
+import FooterEN from "../components/en/Footer.astro";
+import Footer from "../components/en/Footer.astro";
 
 interface Props {
   title: string;
@@ -10,6 +13,8 @@ interface Props {
 }
 
 const { description, title } = Astro.props;
+const currentUrl = Astro.url.pathname;
+const isSpanish = currentUrl.startsWith('/es');
 ---
 
 <!doctype html>
@@ -30,9 +35,9 @@ const { description, title } = Astro.props;
   dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,215,0,0.4),rgba(255,255,255,0))]"
     > 
     </div>  
-    <Header />
+    {isSpanish ? <HeaderES /> : <HeaderEN />}
     <slot />
-    <Footer />
+    {isSpanish ? <FooterES /> : <FooterEN />}
     <style is:global>
       :root {
         color-scheme: light dark;

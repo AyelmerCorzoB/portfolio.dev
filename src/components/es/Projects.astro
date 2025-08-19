@@ -1,0 +1,133 @@
+---
+import Github from "../icons/Github.astro";
+import Tailwind from "../icons/Tailwind.astro";
+import Link from "../icons/Link.astro";
+import LinkButton from "./LinkButton.astro";
+import Laravel from "../icons/Laravel.astro";
+import Mysql from "../icons/Mysql.astro";
+import Css from "../icons/Css.astro";
+import AstroIcon from "../icons/AstroIcon.astro"
+
+const TAGS = {
+  ASTRO: {
+    name: "Astro",
+    class: "bg-[#003159] text-white",
+    icon: AstroIcon,
+  },
+  TAILWIND: {
+    name: "Tailwind CSS",
+    class: "bg-[#003159] text-white",
+    icon: Tailwind,
+  },
+  LARAVEL: {
+    name: "Laravel",
+    class: "bg-red-500 text-white",
+    icon: Laravel,
+  },
+  MYSQL: {
+    name: "MySQL",
+    class: "bg-[#00758F] text-white",
+    icon: Mysql,
+  },
+  CSS: {
+    name: "CSS",
+    class: "bg-[#264de4] text-white",
+    icon: Css,
+  },
+};
+
+const PROJECTS = [
+  {
+    title: "Marvel vs DC",
+    description:
+      "permite explorar y comparar personajes de dos de los universos de cómics más famosos: DC Comics y Marvel. Puedes ver los personajes de cada universo, compararlos en un emocionante 1 vs 1 aleatorio, y descubrir quién es el más poderoso. ¡Perfecto para los amantes de los cómics y los superhéroes!",
+    link: "https://superheroversus.netlify.app/",
+    github: "https://github.com/AyelmerCorzoB/superhero-versus",
+    image: "/projects/DC-MARVEL.png",
+    tags: [TAGS.LARAVEL, TAGS.TAILWIND, TAGS.MYSQL],
+  },
+  {
+    title: "KidsLeague - Plataforma para torneos de futbol infantil",
+    description:
+      "Plataforma para torneos de futbol infantil. Creado con Tailwind CSS. Permite añadir, editar y eliminar torneos. Incluye un gráfico de barras con los ingresos y gastos mensuales.",
+    link: "https://kidsleague.netlify.app/",
+    github: "https://github.com/AyelmerCorzoB/KidsLeague",
+    image: "/projects/kidsleague.png",
+    tags: [TAGS.ASTRO, TAGS.TAILWIND, TAGS.MYSQL],
+  },
+];
+---
+
+<section class="py-16">
+  <div class="grid grid-cols-1 gap-16 max-w-6xl mx-auto px-4">
+    {
+      PROJECTS.map((project, index) => (
+        <article
+          class={`group relative overflow-hidden rounded-2xl dark:border-none border-2 border-yellow-400 bg-gray-900 dark:bg-gray-900 shadow-xl transition-all duration-300 hover:shadow-2xl cursor-default ${index % 2 === 1 ? "md:flex-row-reverse" : ""} flex flex-col md:flex-row`}
+        >
+          {/* Decorative gradient background */}
+          <div class="absolute inset-0 bg-gradient-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 -z-10" />
+
+          {/* Project image with overlay */}
+          <div class="md:w-1/2 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+            <img
+              src={project.image || "/placeholder.svg"}
+              alt={project.title}
+              class="w-full h-full object-cover object-top transition-all duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+
+          {/* Project content */}
+          <div class="md:w-1/2 p-8 flex flex-col justify-between">
+            <div>
+              {/* Tags */}
+              <div class="flex flex-wrap gap-2 mb-4">
+                {project.tags.map((tag) => (
+                  <span
+                    class={`flex items-center gap-1.5 rounded-full text-xs font-medium ${tag.class} py-1.5 px-3 transition-transform duration-300 hover:scale-105`}
+                  >
+                    <tag.icon class="size-4" />
+                    {tag.name}
+                  </span>
+                ))}
+              </div>
+
+              {/* Title */}
+              <h3 class="text-2xl font-bold text-yellow-500  dark:text-white mb-3 group-hover:text-yellow-500 transition-colors duration-300">
+                {project.title}
+              </h3>
+
+              {/* Description */}
+              <p class="text-white dark:text-gray-300 mb-6 leading-relaxed">
+                {project.description}
+              </p>
+            </div>
+
+            {/* Links */}
+            <div class="flex flex-wrap gap-4 mt-auto">
+              {project.github && (
+                <LinkButton
+                  href={project.github}
+                >
+                  <Github class="size-5" />
+                  <span>Código</span>
+                </LinkButton>
+              )}
+
+              {project.link && (
+                <LinkButton
+                  href={project.link}
+                >
+                  <Link class="size-5" />
+                  <span>Demo</span>
+                </LinkButton>
+              )}
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>

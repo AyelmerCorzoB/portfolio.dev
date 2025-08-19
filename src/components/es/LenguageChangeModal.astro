@@ -1,0 +1,84 @@
+---
+// ConstructionModal.astro - A reusable construction/work-in-progress modal
+---
+
+<div id="construction-modal" class="fixed inset-0 z-[100] hidden">
+  <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-xl max-w-md w-full">
+    <div class="flex flex-col items-center text-center gap-4">
+      <div class="text-yellow-500">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto">
+          <rect x="2" y="6" width="20" height="12" rx="2" />
+          <path d="M17 14v-4" />
+          <path d="M17 17v.01" />
+          <path d="M12 17v.01" />
+          <path d="M7 17v.01" />
+          <path d="M7 14v-4" />
+          <path d="M12 14v-4" />
+          <path d="M12 6v-.01" />
+        </svg>
+      </div>
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white">En construcción</h2>
+      <p class="text-gray-600 dark:text-gray-300">
+        Estoy trabajando en la implementación de esta función. Estará disponible próximamente.
+      </p>
+      <button id="close-construction-modal" class="mt-2 px-4 py-2 bg-yellow-400 text-gray-900 font-medium rounded-full hover:bg-yellow-500 transition-colors">
+        Entendido
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Extend the Window interface to make the function globally available
+declare global {
+  interface Window {
+    showConstructionModal: () => void;
+  }
+}
+
+function setupConstructionModal() {
+  const modal = document.getElementById('construction-modal');
+  const closeButton = document.getElementById('close-construction-modal');
+  
+  if (!modal || !closeButton) return;
+  
+  // Close modal function
+  const closeModal = () => {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  };
+  
+  // Event listeners
+  closeButton.addEventListener('click', closeModal);
+  
+  // Close on background click
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+  
+  // Close on ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+      closeModal();
+    }
+  });
+  
+  // Expose function to show modal
+  window.showConstructionModal = () => {
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+  };
+}
+
+// Ejecutar la configuración del modal
+document.addEventListener('astro:page-load', setupConstructionModal);
+
+// Ejecutar en la carga inicial de la página
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', setupConstructionModal);
+} else {
+  setupConstructionModal();
+}
+</script>
+

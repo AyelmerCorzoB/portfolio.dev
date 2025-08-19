@@ -1,27 +1,27 @@
 ---
-import ThemeToggle from "./ThemeToggle.astro";
-import LenguageChangeModal from "./LenguageChangeModal.astro";
+import ThemeToggle from "../../components/en/ThemeToggle.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
 const navItems = [
   {
-    title: "Proyectos",
-    label: "proyectos",
-    url: "/#proyectos",
+    title: "Projects",
+    label: "projects",
+    url: "/en/#projects",
   },
   {
-    title: "Experiencia",
-    label: "experiencia",
-    url: "/#experiencia",
+    title: "Experiencie",
+    label: "experiencie",
+    url: "/en/#experience",
   },
   {
-    title: "Habilidades",
-    label: "habilidades",
-    url: "/#habilidades",
+    title: "Skills",
+    label: "skills",
+    url: "/en//#skills",
   },
   {
-    title: "Sobre mí",
-    label: "sobre-mi",
-    url: "/#sobre-mi",
+    title: "About Me",
+    label: "about me",
+    url: "/en//#about-me",
   },
   {
     title: "Contacto",
@@ -30,7 +30,7 @@ const navItems = [
   },
 ];
 ---
-
+<!-- HEADER EN ESPAÑOL -->
 <header
   class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
 >
@@ -38,7 +38,9 @@ const navItems = [
     <nav class="flex items-center justify-between rounded-full py-2 px-4">
       <!-- Logo or Brand -->
       <div class="flex items-center">
+        <a href="/en">
         <img src="/favicon.png" class="size-15" alt="Logo" />
+        </a>
       </div>
 
       <!-- Desktop Navigation -->
@@ -77,13 +79,11 @@ const navItems = [
           <span>Descargar CV</span>
         </a>
         <ThemeToggle />
-        <select
-          id="language-selector"
-          class="px-3 py-2 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white rounded-md focus:outline-none"
-        >
-          <option value="en">English</option>
-          <option value="es" selected>Español</option>
-        </select>
+        <div id="mobile-language-selector" class="flex gap-4 mt-4 px-3 py-2 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white rounded-md">
+          <a href="/en" class="text-yellow-400 font-medium" aria-current="page">English</a>
+          <span class="text-gray-400">|</span>
+          <a href="/es" class="hover:text-yellow-400 font-medium">Español</a>
+        </div>
       </div>
 
       <!-- Mobile: Hamburger Menu and Download CV -->
@@ -204,8 +204,6 @@ const navItems = [
       </li>
     </ul>
   </div>
-
-  <LenguageChangeModal />
 </header>
 
 <style>
