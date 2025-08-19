@@ -12,58 +12,58 @@ import TitleSection from "../../components/es/TitleSection.astro";
 import Skills from "../../components/es/Skills.astro";
 import SkillsIcon from "../../components/icons/SkillsIcon.astro";
 import BackgroundPaths from "../../components/Background";
-import { ClientRouter } from "astro:transitions";
+import { ClientRouter, fade } from "astro:transitions";
 ---
 
 <Layout
   title="AyelmerDev | Desarrollador y Programador Web"
   description="Contrata a AyelmerDev para crear tu aplicación web o móvil. Desarrollador Web y Creador de Contenido. Especializado en crear aplicaciones únicas."
 >
+  <ClientRouter />
   <BackgroundPaths client:load />
-  <ClientRouter/>
   <main>
     <SectionContainer class="py-16 md:py-36">
-      <Hero />
+      <Hero  />
     </SectionContainer>
   </main>
   <div class="space-y-24">
-    <SectionContainer id="proyectos">
+    <SectionContainer id="projects">
       <TitleSection>
         <CodeIcon class="size-7" />
-        Proyectos
+        Projects
         <!-- Texto traducido -->
       </TitleSection>
-      <Projects />
+      <Projects  />
       <!-- Pasar traducciones al componente -->
     </SectionContainer>
 
-    <SectionContainer id="experiencia">
+    <SectionContainer id="experience">
       <TitleSection>
         <Briefcase class="size-8" />
-        Experiencia
+        Experience
         <!-- Texto traducido -->
       </TitleSection>
-      <Experience />
+      <Experience  />
       <!-- Pasar traducciones al componente -->
     </SectionContainer>
 
-    <SectionContainer id="habilidades">
+    <SectionContainer id="skills">
       <TitleSection>
         <SkillsIcon class="size-8" />
-        Habilidades
+        Skills
         <!-- Texto traducido -->
       </TitleSection>
       <Skills />
       <!-- Pasar traducciones al componente -->
     </SectionContainer>
 
-    <SectionContainer id="sobre-mi">
+    <SectionContainer id="about-me">
       <TitleSection>
         <ProfileCheck class="size-8" />
-        Sobre mi
+        About me
         <!-- Texto traducido -->
       </TitleSection>
-      <AboutMe  />
+      <AboutMe/>
       <!-- Pasar traducciones al componente -->
     </SectionContainer>
   </div></Layout

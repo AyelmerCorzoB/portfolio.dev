@@ -4,43 +4,43 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 
 const navItems = [
   {
-    title: "Proyectos",
-    label: "proyectos",
-    url: "/es/#proyectos",
+    title: "Projects",
+    label: "projects",
+    url: "/en/#projects",
   },
   {
-    title: "Experiencia",
-    label: "experiencia",
-    url: "/es/#experiencia",
+    title: "Experience", // Fixed typo
+    label: "experience",
+    url: "/en/#experience",
   },
   {
-    title: "Habilidades",
-    label: "habilidades",
-    url: "/es/#habilidades",
+    title: "Skills",
+    label: "skills",
+    url: "/en/#skills", // Fixed double slash
   },
   {
-    title: "Sobre mí",
-    label: "sobre-mi",
-    url: "/es/#sobre-mi",
+    title: "About Me",
+    label: "about me",
+    url: "/en/#about-me", // Fixed double slash
   },
   {
-    title: "Contacto",
-    label: "contacto",
+    title: "Contact", // Changed to English for consistency
+    label: "contact",
     url: "mailto:corzobarbosaa@gmail.com",
   },
 ];
 ---
-<!-- HEADER EN ESPAÑOL -->
+
 <header
   class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
 >
   <div class="container px-2 mx-auto">
-    <nav class="flex items-center justify-between rounded-full py-2 px-4">
+    <nav class="flex items-center justify-between rounded-full py-2 px-4 transition-all duration-300">
       <!-- Logo or Brand -->
       <div class="flex items-center">
-        <a href="/es">
-          <img src="/favicon.png" class="size-15" alt="Logo" />
-          </a>
+        <a href="/es" class="transition-transform hover:scale-105" aria-label="Home">
+          <img src="/favicon.png" class="size-15" alt="Ayelmer Corzo Logo" />
+        </a>
       </div>
 
       <!-- Desktop Navigation -->
@@ -48,7 +48,7 @@ const navItems = [
         {
           navItems.map((link) => (
             <a
-              class="relative px-3 py-2 text-sm font-medium transition text-black/80 dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400"
+              class="relative px-3 py-2 text-sm font-medium transition-all duration-200 text-black/80 dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 rounded-md hover:bg-black/5 dark:hover:bg-white/5"
               aria-label={link.label}
               href={link.url}
             >
@@ -58,54 +58,52 @@ const navItems = [
         }
       </div>
 
-      <!-- Desktop: Download CV and Theme Toggle -->
-      <div class="hidden md:flex items-center gap-4">
-        <a
-          href="/CV-AyelmerCorzo.pdf"
-          download="currículum-vitae-AyelmerCorzo.pdf"
-          class="inline-flex items-center gap-2 px-4 py-2 bg-yellow-400 text-gray-900 text-sm font-semibold rounded-full shadow-md hover:bg-yellow-500 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-              clip-rule="evenodd"></path>
-          </svg>
-          <span>Descargar CV</span>
-        </a>
-        <ThemeToggle />
-        <div
-          id="mobile-language-selector"
-          class="flex gap-4 mt-4 px-3 py-2 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white rounded-md"
-        >
-          <a href={getRelativeLocaleUrl('en')} class="hover:text-yellow-400 font-medium"
-            >Ingles</a
-          >
+      <!-- Desktop: Download CV, Language Selector and Theme Toggle -->
+      <div class="hidden md:flex items-center gap-3">
+        <div class="flex items-center gap-2 px-3 py-2 bg-gray-100/80 dark:bg-gray-800/80 text-gray-800 dark:text-white rounded-full backdrop-blur-sm">
+          <a href="/en" class="text-yellow-400 font-medium text-sm hover:text-yellow-500 transition-colors" aria-current="page">EN</a>
           <span class="text-gray-400">|</span>
-          <a href={getRelativeLocaleUrl('es')}class="hover:text-yellow-400 font-medium"
-            >Español</a
-          >
+          <a href="/es" class="hover:text-yellow-400 font-medium text-sm transition-colors">ES</a>
         </div>
-      </div>
-
-      <!-- Mobile: Hamburger Menu and Download CV -->
-      <div class="flex items-center md:hidden">
+        
+        <ThemeToggle />
+        
         <a
           href="/CV-AyelmerCorzo.pdf"
           download="currículum-vitae-AyelmerCorzo.pdf"
-          class="mr-2 inline-flex items-center gap-1 px-3 py-1.5 bg-yellow-400 text-gray-900 text-xs font-semibold rounded-full shadow-md"
-          aria-label="Descargar CV"
+          class="inline-flex items-center gap-2 px-4 py-2 bg-yellow-400 text-gray-900 text-sm font-semibold rounded-full shadow-md hover:bg-yellow-500 hover:shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2"
+          aria-label="Download CV"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-4 w-4"
             viewBox="0 0 20 20"
             fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+              clip-rule="evenodd"></path>
+          </svg>
+          <span>Download CV</span>
+        </a>
+      </div>
+
+      <!-- Mobile: Download CV and Hamburger Menu -->
+      <div class="flex items-center md:hidden gap-2">
+        <a
+          href="/CV-AyelmerCorzo.pdf"
+          download="currículum-vitae-AyelmerCorzo.pdf"
+          class="inline-flex items-center gap-1 px-3 py-1.5 bg-yellow-400 text-gray-900 text-xs font-semibold rounded-full shadow-md hover:bg-yellow-500 transition-all duration-200"
+          aria-label="Download CV"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-3 w-3"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
           >
             <path
               fill-rule="evenodd"
@@ -117,15 +115,18 @@ const navItems = [
 
         <button
           id="menu-toggle"
-          class="p-2 rounded-md text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none"
+          class="p-2 rounded-md text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-200"
           aria-label="Toggle menu"
+          aria-expanded="false"
         >
           <svg
+            id="menu-icon"
             xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
+            class="h-6 w-6 transition-transform duration-200"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
+            aria-hidden="true"
           >
             <path
               stroke-linecap="round"
@@ -141,73 +142,83 @@ const navItems = [
   <!-- Mobile Menu Overlay -->
   <div
     id="mobile-menu"
-    class="fixed inset-0 bg-gray-950 z-50 hidden flex-col justify-center items-center"
+    class="fixed inset-0 bg-gray-950/95 backdrop-blur-sm z-50 hidden opacity-0 transition-all duration-300"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="mobile-menu-title"
   >
-    <div class="absolute top-4 right-4">
-      <button id="close-menu" class="p-2 text-white" aria-label="Close menu">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-8 w-8"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+    <div class="flex flex-col justify-center items-center h-full">
+      <div class="absolute top-4 right-4">
+        <button 
+          id="close-menu" 
+          class="p-2 text-white hover:text-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded-md transition-colors duration-200" 
+          aria-label="Close menu"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-    </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
 
-    <ul class="flex flex-col items-center space-y-6">
-      {
-        navItems.map((link) => (
-          <li>
+      <nav class="flex flex-col items-center space-y-8" id="mobile-menu-title">
+        {
+          navItems.map((link, index) => (
             <a
-              class="text-xl font-medium text-white hover:text-yellow-400 transition-colors"
+              class="text-2xl font-medium text-white hover:text-yellow-400 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded-md px-4 py-2"
               aria-label={link.label}
               href={link.url}
+              style={`animation-delay: ${index * 100}ms`}
             >
               {link.title}
             </a>
-          </li>
-        ))
-      }
-      <li class="mt-8">
+          ))
+        }
+        
+        <!-- Mobile: Language Selector -->
+        <div class="flex items-center gap-3 px-4 py-2 bg-gray-800/80 text-white rounded-full backdrop-blur-sm mt-4">
+          <a href="/en" class="text-yellow-400 font-medium hover:text-yellow-500 transition-colors" aria-current="page">English</a>
+          <span class="text-gray-400">|</span>
+          <a href="/es" class="hover:text-yellow-400 font-medium transition-colors">Español</a>
+        </div>
+
+        <!-- Mobile: Theme Toggle -->
+        <div class="mt-4">
+          <ThemeToggle />
+        </div>
+
+        <!-- Mobile: Download CV -->
         <a
           href="/CV-AyelmerCorzo.pdf"
           download="currículum-vitae-AyelmerCorzo.pdf"
-          class="inline-flex items-center gap-2 px-6 py-3 bg-yellow-400 text-gray-900 font-semibold rounded-full shadow-md hover:bg-yellow-500 hover:shadow-lg transition-all duration-300"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-yellow-400 text-gray-900 font-semibold rounded-full shadow-md hover:bg-yellow-500 hover:shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400 mt-6"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-5 w-5"
             viewBox="0 0 20 20"
             fill="currentColor"
+            aria-hidden="true"
           >
             <path
               fill-rule="evenodd"
               d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
               clip-rule="evenodd"></path>
           </svg>
-          <span>Descargar CV</span>
+          <span>Download CV</span>
         </a>
-      </li>
-
-      <!-- Mobile: Theme Toggle and Language Selector -->
-      <li class="mt-6">
-        <div class="flex flex-col items-center gap-4">
-          <ThemeToggle />
-          <div id="mobile-language-selector" class="flex gap-4 mt-4 px-3 py-2 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white rounded-md">
-            <a href="/en" class="hover:text-yellow-400 font-medium">English</a>
-            <span class="text-gray-400">|</span>
-            <a href="/es" class="text-yellow-400 font-medium" aria-current="page">Español</a>
-          </div>
-        </div>
-      </li>
-    </ul>
+      </nav>
+    </div>
   </div>
 </header>
 
@@ -227,15 +238,15 @@ const navItems = [
       backdrop-filter: none;
     }
     100% {
-      background-color: rgba(224, 203, 15, 0.363);
+      background-color: rgba(153, 138, 2, 0.8);
       box-shadow:
         0 10px 15px -3px rgba(0, 0, 0, 0.1),
         0 4px 6px -2px rgba(0, 0, 0, 0.05);
       backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
   }
 
-  /* Estilos para el modo oscuro */
   .dark nav {
     animation: nav-shadow-dark 0.5s ease-out both;
     animation-timeline: scroll();
@@ -249,12 +260,36 @@ const navItems = [
       backdrop-filter: none;
     }
     100% {
-      background-color: rgba(33, 33, 33, 0.5);
+      background-color: rgba(17, 17, 17, 0.8);
       box-shadow:
-        0 10px 15px -3px rgba(0, 0, 0, 0.1),
-        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        0 10px 15px -3px rgba(0, 0, 0, 0.3),
+        0 4px 6px -2px rgba(0, 0, 0, 0.1);
       backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
+  }
+
+  /* Mobile menu animations */
+  #mobile-menu.show {
+    opacity: 1;
+  }
+
+  #mobile-menu.show nav a {
+    animation: slideInUp 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  @keyframes slideInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Menu icon animation */
+  #menu-toggle.active #menu-icon {
+    transform: rotate(90deg);
   }
 </style>
 
@@ -271,94 +306,90 @@ const navItems = [
 
     const openMenu = () => {
       mobileMenu.classList.remove("hidden");
-      mobileMenu.classList.add("flex");
-      document.body.style.overflow = "hidden"; // Prevent scrolling when menu is open
+      // Force reflow
+      mobileMenu.offsetHeight;
+      mobileMenu.classList.add("show");
+      menuToggle.classList.add("active");
+      menuToggle.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
+      
+      // Focus management
+      closeMenu.focus();
     };
 
     const closeMenuHandler = () => {
-      mobileMenu.classList.add("hidden");
-      mobileMenu.classList.remove("flex");
-      document.body.style.overflow = ""; // Restore scrolling
+      mobileMenu.classList.remove("show");
+      menuToggle.classList.remove("active");
+      menuToggle.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+      
+      // Hide after animation
+      setTimeout(() => {
+        mobileMenu.classList.add("hidden");
+      }, 300);
+      
+      // Return focus to menu toggle
+      menuToggle.focus();
     };
 
+    // Event listeners
     menuToggle.addEventListener("click", openMenu);
-    menuToggle.addEventListener("touchend", (e) => {
-      e.preventDefault();
-      openMenu();
-    });
-
     closeMenu.addEventListener("click", closeMenuHandler);
-    closeMenu.addEventListener("touchend", (e) => {
-      e.preventDefault();
-      closeMenuHandler();
-    });
 
-    // Close menu when clicking on a link
-    const menuLinks = mobileMenu.querySelectorAll("a");
+    // Close menu when clicking on navigation links
+    const menuLinks = mobileMenu.querySelectorAll("nav a");
     menuLinks.forEach((link) => {
       link.addEventListener("click", closeMenuHandler);
     });
 
-    // Handle window resize
-    window.addEventListener("resize", () => {
-      if (
-        window.innerWidth >= 768 &&
-        !mobileMenu.classList.contains("hidden")
-      ) {
-        mobileMenu.classList.add("hidden");
-        mobileMenu.classList.remove("flex");
-        document.body.style.overflow = ""; // Restore scrolling
+    // Close menu on escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !mobileMenu.classList.contains("hidden")) {
+        closeMenuHandler();
       }
     });
+
+    // Handle window resize
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 768 && !mobileMenu.classList.contains("hidden")) {
+        closeMenuHandler();
+      }
+    });
+
+    // Trap focus within mobile menu
+    const trapFocus = (e) => {
+      if (mobileMenu.classList.contains("hidden")) return;
+      
+      const focusableElements = mobileMenu.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (e.key === "Tab") {
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            lastElement.focus();
+            e.preventDefault();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            firstElement.focus();
+            e.preventDefault();
+          }
+        }
+      }
+    };
+
+    document.addEventListener("keydown", trapFocus);
   }
 
+  // Initialize on page load
   document.addEventListener("astro:page-load", setupMobileMenu);
-
-  // Also run on initial page load in case astro:page-load doesn't fire
+  
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", setupMobileMenu);
   } else {
     setupMobileMenu();
   }
-  function setupLanguageSelectors() {
-  console.log("Language selector change detected");
-  const languageSelector = document.getElementById("language-selector");
-  const mobileLanguageSelector = document.getElementById("mobile-language-selector");
-
-  if (languageSelector) {
-    languageSelector.addEventListener("change", () => {
-      // Mostrar el modal de construcción
-      if (window.showConstructionModal) {
-        window.showConstructionModal();
-      }
-    });
-  }
-
-  if (mobileLanguageSelector) {
-    mobileLanguageSelector.addEventListener("change", () => {
-      // Mostrar el modal de construcción
-      if (window.showConstructionModal) {
-        window.showConstructionModal();
-      }
-    });
-  }
-}
-
-// Ejecutar la configuración del modal y los selectores de idioma
-document.addEventListener("astro:page-load", () => {
-  setupMobileMenu();
-  setupLanguageSelectors(); // Asegúrate de llamar esta función
-});
-
-// Ejecutar en la carga inicial de la página
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", () => {
-    setupMobileMenu();
-    setupLanguageSelectors(); // Asegúrate de llamar esta función
-  });
-} else {
-  setupMobileMenu();
-  setupLanguageSelectors(); // Asegúrate de llamar esta función
-}
 </script>
-
