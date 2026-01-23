@@ -24,7 +24,7 @@ export default function Carrusel() {
   }, [])
 
   return (
-    <div className="relative bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-3xl shadow-2xl w-60 max-w-xs sm:max-w-sm md:max-w-md overflow-hidden">
+    <div className="relative bg-gradient-to-br from-green-400 to-green-600 rounded-3xl shadow-2xl w-60 max-w-xs sm:max-w-sm md:max-w-md overflow-hidden">
       {/* Efecto de resplandor sutil */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-3xl z-10 pointer-events-none" />
 

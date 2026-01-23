@@ -1,25 +1,32 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro"
 const EXPERIENCE = [
-    {
-      date: "Noviembre 2024",
-      title: "Full Stack Developer",
-      company: "Campuslands",
-      description:
-        "Participé activamente en el desarrollo de una aplicación web, formando parte de ambos equipos: frontend y backend. Mi rol en ambos equipos me permitió tener una visión integral del proyecto y garantizar una integración fluida entre las dos áreas. ",
-    },
   {
-    date: "Actualmente...",
-    title: "Gestion TI",
-    company: "Arroz Gelvez",
+    date: "Noviembre 2024",
+    title: "Desarrollador Full Stack",
+    company: "Campuslands",
     description:
-    // cambio de desripcion por el momento puede ir de esta manera
-      "Aux Transformacion Digital para Grupo Gelvez",
-  }
-]
+      "Participé activamente en el desarrollo de una aplicación web, formando parte de los equipos de frontend y backend. Esta experiencia me permitió tener una visión integral del proyecto, asegurando una correcta comunicación e integración entre ambas áreas.",
+  },
+  {
+    date: "Julio 2025 - Enero 2026",
+    title: "Auxiliar de Transformación Digital",
+    company: "Arroz Gelvez S.A.S",
+    description:
+      "Realicé mis prácticas del técnico laboral en Programación de Software, apoyando procesos de transformación digital, desarrollo de soluciones internas y mejora de flujos tecnológicos dentro de la empresa.",
+  },
+  {
+    date: "Actualmente",
+    title: "Auxiliar de Transformación Digital",
+    company: "Inversiones Ciudad S.A.S",
+    description:
+      "Apoyo en procesos de transformación digital, automatización y desarrollo de soluciones tecnológicas, contribuyendo a la optimización de procesos internos y al fortalecimiento del área de sistemas.",
+  },
+];
+
 ---
 
-<ol class="relative p-4 mt-16">
+<ol class="relative p-4 mt-2">
   {
     EXPERIENCE.map((experience) => (
       <li>

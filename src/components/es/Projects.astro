@@ -63,14 +63,14 @@ const PROJECTS = [
     {
       PROJECTS.map((project, index) => (
         <article
-          class={`group relative overflow-hidden rounded-2xl dark:border-none border-2 border-yellow-400 bg-gray-900 dark:bg-gray-900 shadow-xl transition-all duration-300 hover:shadow-2xl cursor-default ${index % 2 === 1 ? "md:flex-row-reverse" : ""} flex flex-col md:flex-row`}
+          class={`group relative overflow-hidden rounded-2xl dark:border-none border-2 border-green-400 bg-gray-900 dark:bg-gray-900 shadow-xl transition-all duration-300 hover:shadow-2xl cursor-default ${index % 2 === 1 ? "md:flex-row-reverse" : ""} flex flex-col md:flex-row`}
         >
           {/* Decorative gradient background */}
           <div class="absolute inset-0 bg-gradient-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 -z-10" />
 
           {/* Project image with overlay */}
           <div class="md:w-1/2 relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+            <div class="absolute inset-0 bg-gradient-to-br from-green-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
             <img
               src={project.image || "/placeholder.svg"}
               alt={project.title}
@@ -95,7 +95,7 @@ const PROJECTS = [
               </div>
 
               {/* Title */}
-              <h3 class="text-2xl font-bold text-yellow-500  dark:text-white mb-3 group-hover:text-yellow-500 transition-colors duration-300">
+              <h3 class="text-2xl font-bold text-green-500  dark:text-white mb-3 group-hover:text-green-500 transition-colors duration-300">
                 {project.title}
               </h3>
 

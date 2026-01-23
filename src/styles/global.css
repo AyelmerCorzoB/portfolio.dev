@@ -1,3 +1,30 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Fondo base */
+  --bg-base: #ecececef;          /* gray-50 */
+  --bg-radial-from: 56 189 248; /* azul spotlight */
+  --bg-radial-opacity: 0.55;
+  --bg-radial-to: 255 255 255; /* blanco */
+}
+
+.dark {
+  --bg-base: #00eeff2d;       
+  --bg-radial-from: 56 189 248;
+  --bg-radial-opacity: 0.35;
+  --bg-radial-to: 2 6 23;      
+}
+
+.bg-background {
+  background-color: var(--bg-base);
+}
+
+.bg-gradient-radial {
+  background-image: radial-gradient(
+    radial 80% 80% at 50% -20%,
+    rgba(var(--bg-radial-from), var(--bg-radial-opacity)),
+    rgb(var(--bg-radial-to))
+  );
+}

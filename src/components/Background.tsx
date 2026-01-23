@@ -1,112 +1,175 @@
-"use client";
+"use client"
 
-import { motion } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useRef } from "react"
+import { cn } from "../utils/utils"
 
-interface FloatingPathsProps {
-  position: number;
-  color?: string;
-  darkColor?: string;
-  pathCount?: number;
+interface CyberBackgroundProps {
+  particleCount?: number
+  noiseIntensity?: number
+  particleSize?: { min: number; max: number }
+  className?: string
 }
 
-/**
- * Genera el path SVG dinámico basado en el índice y la posición.
- */
-const generatePath = (i: number, position: number): string => {
-  const xOffset = i * 5 * position;
-  const yOffset = i * 6;
+const PARTICLE_COLORS = {
+  dark: {
+    base: "0, 255, 160",   // green neon
+    opacity: 0.10,
+    fade: "rgba(0,0,0,0.15)",
+  },
+  light: {
+    base: "0, 160, 90",    // green fuerte pero elegante
+    opacity: 0.10,
+    fade: "rgba(255,255,255,0.18)",
+  },
+}
+function createNoise() {
 
-  return `M-${380 - xOffset} -${189 + yOffset}
-          C-${380 - xOffset} -${189 + yOffset} 
-          -${312 - xOffset} ${216 - yOffset} 
-           ${152 - xOffset} ${343 - yOffset}
-          C${616 - xOffset} ${470 - yOffset} 
-           ${684 - xOffset} ${875 - yOffset} 
-           ${684 - xOffset} ${875 - yOffset}`;
-};
 
-function FloatingPaths({
-  position,
-  color = "text-yellow-500/80",
-  darkColor = "text-yellow-500/50",
-  pathCount = 24,
-}: FloatingPathsProps) {
-  // Usamos useMemo para evitar recalcular los paths en cada render
-  const paths = useMemo(() => {
-    return Array.from({ length: pathCount }, (_, i) => ({
-      id: i,
-      d: generatePath(i, position),
-      width: 0.5 + i * 0.04,
-      delay: i * 0.01,
-      opacity: 0.1 + i * 0.05,
-    }));
-  }, [pathCount, position]);
+  const permutation = [151, 160, 137, 91, 90, 15, 131, 13, 201, 95, 96, 53, 194, 233, 7, 225, 140, 36, 103, 30, 69, 142, 8, 99, 37, 240,
+    21, 10, 23, 190, 6, 148, 247, 120, 234, 75, 0, 26, 197, 62, 94, 252, 219, 203, 117, 35, 11, 32, 57, 177, 33, 88,
+    237, 149, 56, 87, 174, 20, 125, 136, 171, 168, 68, 175, 74, 165, 71, 134, 139, 48, 27, 166, 77, 146, 158, 231, 83,
+    111, 229, 122, 60, 211, 133, 230, 220, 105, 92, 41, 55, 46, 245, 40, 244, 102, 143, 54, 65, 25, 63, 161, 1, 216, 80,
+    73, 209, 76, 132, 187, 208, 89, 18, 169, 200, 196, 135, 130, 116, 188, 159, 86, 164, 100, 109, 198, 173, 186, 3, 64,
+    52, 217, 226, 250, 124, 123, 5, 202, 38, 147, 118, 126, 255, 82, 85, 212, 207, 206, 59, 227, 47, 16, 58, 17, 182,
+    189, 28, 42, 223, 183, 170, 213, 119, 248, 152, 2, 44, 154, 163, 70, 221, 153, 101, 155, 167, 43, 172, 9, 129, 22,
+    39, 253, 19, 98, 108, 110, 79, 113, 224, 232, 178, 185, 112, 104, 218, 246, 97, 228, 251, 34, 242, 193, 238, 210,
+    144, 12, 191, 179, 162, 241, 81, 51, 145, 235, 249, 14, 239, 107, 49, 192, 214, 31, 181, 199, 106, 157, 184, 84,
+    204, 176, 115, 121, 50, 45, 127, 4, 150, 254, 138, 236, 205, 93, 222, 114, 67, 29, 24, 72, 243, 141, 128, 195, 78,
+    66, 215, 61, 156, 180]
 
-  return (
-    <div className="absolute inset-0 pointer-events-none">
-      <svg
-        className={`w-full h-full ${color} dark:${darkColor}`}
-        viewBox="0 0 696 316"
-        fill="none"
-        preserveAspectRatio="xMidYMid slice"
-      >
-        {paths.map((path) => (
-          <motion.path
-            key={path.id}
-            d={path.d}
-            stroke="currentColor"
-            strokeWidth={path.width}
-            strokeOpacity={path.opacity}
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{
-              pathLength: 1,
-              opacity: [0.2, 0.5, 0.2],
-            }}
-            transition={{
-              duration: 15 + Math.random() * 10,
-              delay: path.delay,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
-      </svg>
-    </div>
-  );
+  const p = new Array(512)
+  for (let i = 0; i < 256; i++) p[256 + i] = p[i] = permutation[i]
+
+  function fade(t: number) { return t * t * t * (t * (t * 6 - 15) + 10) }
+  function lerp(t: number, a: number, b: number) { return a + t * (b - a) }
+  function grad(hash: number, x: number, y: number, z: number) {
+    const h = hash & 15
+    const u = h < 8 ? x : y
+    const v = h < 4 ? y : h === 12 || h === 14 ? x : z
+    return ((h & 1) === 0 ? u : -u) + ((h & 2) === 0 ? v : -v)
+  }
+
+  return {
+    simplex3: (x: number, y: number, z: number) => {
+      const X = Math.floor(x) & 255
+      const Y = Math.floor(y) & 255
+      const Z = Math.floor(z) & 255
+      x -= Math.floor(x); y -= Math.floor(y); z -= Math.floor(z)
+      const u = fade(x), v = fade(y), w = fade(z)
+      const A = p[X] + Y, AA = p[A] + Z, AB = p[A + 1] + Z
+      const B = p[X + 1] + Y, BA = p[B] + Z, BB = p[B + 1] + Z
+      return lerp(w,
+        lerp(v,
+          lerp(u, grad(p[AA], x, y, z), grad(p[BA], x - 1, y, z)),
+          lerp(u, grad(p[AB], x, y - 1, z), grad(p[BB], x - 1, y - 1, z))
+        ),
+        lerp(v,
+          lerp(u, grad(p[AA + 1], x, y, z - 1), grad(p[BA + 1], x - 1, y, z - 1)),
+          lerp(u, grad(p[AB + 1], x, y - 1, z - 1), grad(p[BB + 1], x - 1, y - 1, z - 1))
+        )
+      )
+    }
+  }
 }
 
-export default function BackgroundPaths({
-  pathCount = 24,
-}: {
-  pathCount?: number;
-}) {
-  const [mounted, setMounted] = useState(false);
+interface Particle {
+  x: number
+  y: number
+  size: number
+  velocity: { x: number; y: number }
+  life: number
+  maxLife: number
+}
 
-  // Solo montamos en el cliente para evitar errores de SSR
+export default function ParticlesBackground({
+  particleCount = 2000,
+  noiseIntensity = 0.003,
+  particleSize = { min: 2.5, max: 4 },
+  className,
+}: CyberBackgroundProps) {
+
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const noise = createNoise()
+
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext("2d", { alpha: true })
+    if (!ctx) return
 
-  if (!mounted) return null;
+    const resizeCanvas = () => {
+      const container = canvas.parentElement
+      if (!container) return
+      canvas.width = container.clientWidth
+      canvas.height = container.clientHeight
+    }
+
+    resizeCanvas()
+
+    const particles: Particle[] = Array.from({ length: particleCount }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * (particleSize.max - particleSize.min) + particleSize.min,
+      velocity: { x: 0, y: 0 },
+      life: Math.random() * 100,
+      maxLife: 100 + Math.random() * 50,
+    }))
+
+    const animate = () => {
+      const isDark = document.documentElement.classList.contains("dark")
+      const scheme = isDark ? PARTICLE_COLORS.dark : PARTICLE_COLORS.light
+
+      // LIMPIA sin pintar fondo (transparente)
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+      for (const p of particles) {
+        p.life++
+        if (p.life > p.maxLife) {
+          p.life = 0
+          p.x = Math.random() * canvas.width
+          p.y = Math.random() * canvas.height
+        }
+
+        const lifeFactor = Math.sin((p.life / p.maxLife) * Math.PI)
+        const opacity = lifeFactor * scheme.opacity
+
+        const n = noise.simplex3(
+          p.x * noiseIntensity,
+          p.y * noiseIntensity,
+          Date.now() * 0.0001
+        )
+
+        const angle = n * Math.PI * 4
+        p.velocity.x = Math.cos(angle) * 1.5
+        p.velocity.y = Math.sin(angle) * 1.5
+
+        p.x += p.velocity.x
+        p.y += p.velocity.y
+
+        if (p.x < 0) p.x = canvas.width
+        if (p.x > canvas.width) p.x = 0
+        if (p.y < 0) p.y = canvas.height
+        if (p.y > canvas.height) p.y = 0
+
+        ctx.fillStyle = `rgba(${scheme.base}, ${opacity})`
+        ctx.beginPath()
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
+        ctx.fill()
+      }
+
+      requestAnimationFrame(animate)
+    }
+
+
+
+    animate()
+    window.addEventListener("resize", resizeCanvas)
+    return () => window.removeEventListener("resize", resizeCanvas)
+  }, [particleCount, noiseIntensity, particleSize])
 
   return (
-    <div className="fixed inset-0 -z-[1] min-h-screen w-full overflow-hidden">
-      <div className="absolute inset-0 backdrop-blur-[1px]" />
-      {/* Capa frontal animada */}
-      <FloatingPaths
-        position={1}
-        color="text-yellow-500/80"
-        darkColor="text-yellow-500/50"
-        pathCount={pathCount}
-      />
-      {/* Capa de fondo animada */}
-      <FloatingPaths
-        position={-1}
-        color="text-gray-950/50"
-        darkColor="text-gray-400"
-        pathCount={pathCount}
-      />
+    <div className={cn("fixed inset-0 pointer-events-none", className)}>
+      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
     </div>
-  );
+  )
 }
